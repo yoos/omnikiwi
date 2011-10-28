@@ -1,0 +1,27 @@
+PCBNEW-LibDoc----V1  22/3/2010-17:48:46
+#
+$MODULE CP3
+Li CP3
+Cd Condensateur polarise
+Kw CP
+$EndMODULE
+#
+$MODULE C2V8
+Li C2V8
+Cd Condensateur polarise
+Kw CP
+$EndMODULE
+#
+$MODULE C3V
+Li C3V
+Cd Condensateur polarise
+Kw CP
+$EndMODULE
+#
+$MODULE PIN_ARRAY_4x1
+Li PIN_ARRAY_4x1
+Cd Double rangee de contacts 2 x 5 pins
+Kw CONN
+$EndMODULE
+#
+$EndLIBDOC

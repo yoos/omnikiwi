@@ -1,0 +1,8 @@
+ERC control (26/3/2010-16:58:06)
+
+***** Sheet / (Root) 
+ERC: Error: Pin power_out connected to Pin power_out (net 24) (X= 4.100 inches, Y= 5.750 inches
+ERC: Warning Pin power_in not driven (Net 23) (X= 3.000 inches, Y= 2.200 inches
+ERC: Warning Pin power_in not driven (Net 22) (X= 3.700 inches, Y= 6.150 inches
+
+ >> Errors ERC: 3

@@ -1,0 +1,326 @@
+# EESchema Netlist Version 1.1 created  Wed 07 Sep 2011 04:45:30 PM PDT
+(
+ ( /4B9F3BDA SM0603 C1 0.1uF
+  ( 1 N-000010 )
+  ( 2 N-000006 )
+ )
+ ( /4B9F3BE0 SM0603 C2 0.1uF
+  ( 1 N-000005 )
+  ( 2 N-000008 )
+ )
+ ( /4B9F3BE2 SM0603 C3 0.1uF
+  ( 1 N-000004 )
+  ( 2 N-000007 )
+ )
+ ( /4B9F3BE6 SM0603 C4 0.1uF
+  ( 1 N-000009 )
+  ( 2 N-000011 )
+ )
+ ( /4BA245CF SM0603 C5 0.1uF
+  ( 1 VSS )
+  ( 2 GND )
+ )
+ ( /4BAEF4C4 SM0603 C6 0.1uF
+  ( 1 VSS )
+  ( 2 GND )
+ )
+ ( /4B9F3C06 C2V10 C7 470
+  ( 1 VCC )
+  ( 2 GND )
+ )
+ ( /4BA5BC95 C2V10 C8 470
+  ( 1 VCC )
+  ( 2 GND )
+ )
+ ( /4BA5AD19 SM2112L D1 DIODE
+  ( 1 GND )
+  ( 2 N-000010 )
+ )
+ ( /4BA5ADFA SM2112L D2 DIODE
+  ( 1 N-000010 )
+  ( 2 VCC )
+ )
+ ( /4BA5AE0D SM2112L D3 DIODE
+  ( 1 GND )
+  ( 2 N-000004 )
+ )
+ ( /4BA5AE1F SM2112L D4 DIODE
+  ( 1 N-000004 )
+  ( 2 VCC )
+ )
+ ( /4BA5AD2B SM2112L D5 DIODE
+  ( 1 GND )
+  ( 2 N-000006 )
+ )
+ ( /4BA5ADFD SM2112L D6 DIODE
+  ( 1 N-000006 )
+  ( 2 VCC )
+ )
+ ( /4BA5AE10 SM2112L D7 DIODE
+  ( 1 GND )
+  ( 2 N-000007 )
+ )
+ ( /4BA5AE24 SM2112L D8 DIODE
+  ( 1 N-000007 )
+  ( 2 VCC )
+ )
+ ( /4BA5AD2E SM2112L D9 DIODE
+  ( 1 GND )
+  ( 2 N-000005 )
+ )
+ ( /4BA5ADFF SM2112L D10 DIODE
+  ( 1 N-000005 )
+  ( 2 VCC )
+ )
+ ( /4BA5AE12 SM2112L D11 DIODE
+  ( 1 GND )
+  ( 2 N-000009 )
+ )
+ ( /4BA5AE26 SM2112L D12 DIODE
+  ( 1 N-000009 )
+  ( 2 VCC )
+ )
+ ( /4BA5AD31 SM2112L D13 DIODE
+  ( 1 GND )
+  ( 2 N-000008 )
+ )
+ ( /4BA5AE02 SM2112L D14 DIODE
+  ( 1 N-000008 )
+  ( 2 VCC )
+ )
+ ( /4BA5AE16 SM2112L D15 DIODE
+  ( 1 GND )
+  ( 2 N-000011 )
+ )
+ ( /4BA5AE2D SM2112L D16 DIODE
+  ( 1 N-000011 )
+  ( 2 VCC )
+ )
+ ( /4BAE673B SM1206POL D17 GRN
+  ( 1 N-000023 )
+  ( 2 N-000022 )
+ )
+ ( /4BAE6746 SM1206POL D18 RED
+  ( 1 N-000022 )
+  ( 2 N-000023 )
+ )
+ ( /4BAE6926 SM1206POL D19 GRN
+  ( 1 N-000021 )
+  ( 2 N-000020 )
+ )
+ ( /4BAE692A SM1206POL D20 RED
+  ( 1 N-000020 )
+  ( 2 N-000021 )
+ )
+ ( /4BAE692F SM1206POL D21 GRN
+  ( 1 N-000019 )
+  ( 2 N-000018 )
+ )
+ ( /4BAE6933 SM1206POL D22 RED
+  ( 1 N-000018 )
+  ( 2 N-000019 )
+ )
+ ( /4BAE6938 SM1206POL D23 GRN
+  ( 1 N-000017 )
+  ( 2 N-000016 )
+ )
+ ( /4BAE693C SM1206POL D24 RED
+  ( 1 N-000016 )
+  ( 2 N-000017 )
+ )
+ ( /4BA0A7C4 LEDV D25 PWR
+  ( 1 VSS )
+  ( 2 N-000012 )
+ )
+ ( /4B9F2E50 L298 H1 L298N
+  ( 1 GND )
+  ( 2 N-000010 )
+  ( 3 N-000006 )
+  ( 4 VCC )
+  ( 5 N-000003 )
+  ( 6 VSS )
+  ( 7 N-000022 )
+  ( 8 GND )
+  ( 9 VSS )
+  ( 10 N-000013 )
+  ( 11 VSS )
+  ( 12 N-000020 )
+  ( 13 N-000005 )
+  ( 14 N-000008 )
+  ( 15 GND )
+ )
+ ( /4B9F2E53 L298 H2 L298N
+  ( 1 GND )
+  ( 2 N-000004 )
+  ( 3 N-000007 )
+  ( 4 VCC )
+  ( 5 N-000014 )
+  ( 6 VSS )
+  ( 7 N-000018 )
+  ( 8 GND )
+  ( 9 VSS )
+  ( 10 N-000002 )
+  ( 11 VSS )
+  ( 12 N-000016 )
+  ( 13 N-000009 )
+  ( 14 N-000011 )
+  ( 15 GND )
+ )
+ ( /4B9F328D ST2 M1 MOTOR
+  ( 1 N-000010 )
+  ( 2 N-000006 )
+ )
+ ( /4B9F3297 ST2 M2 MOTOR
+  ( 1 N-000005 )
+  ( 2 N-000008 )
+ )
+ ( /4B9F329E ST2 M3 MOTOR
+  ( 1 N-000004 )
+  ( 2 N-000007 )
+ )
+ ( /4B9F32A2 ST2 M4 MOTOR
+  ( 1 N-000009 )
+  ( 2 N-000011 )
+ )
+ ( /4BA589E9 ST3 MDP1 MD_POWER
+  ( 1 VCC )
+  ( 2 VSS )
+  ( 3 GND )
+ )
+ ( /4BAF0CFD PIN_ARRAY_4x1 MDS1 MD_SIGNAL_12
+  ( 1 N-000003 )
+  ( 2 N-000022 )
+  ( 3 N-000013 )
+  ( 4 N-000020 )
+ )
+ ( /4BAF0D03 PIN_ARRAY_4x1 MDS2 MD_SIGNAL_34
+  ( 1 N-000014 )
+  ( 2 N-000018 )
+  ( 3 N-000002 )
+  ( 4 N-000016 )
+ )
+ ( /4BAE68E0 SM0603 R1 270
+  ( 1 N-000003 )
+  ( 2 N-000023 )
+ )
+ ( /4BAE68F6 SM0603 R2 270
+  ( 1 N-000013 )
+  ( 2 N-000021 )
+ )
+ ( /4BAE6908 SM0603 R3 270
+  ( 1 N-000014 )
+  ( 2 N-000019 )
+ )
+ ( /4BAE691E SM0603 R4 270
+  ( 1 N-000002 )
+  ( 2 N-000017 )
+ )
+ ( /4BA0A821 SM0603 R5 270
+  ( 1 GND )
+  ( 2 N-000012 )
+ )
+)
+*
+{ Allowed footprints by component:
+$component C1
+ C
+$endlist
+$component C2
+ C
+$endlist
+$component C3
+ C
+$endlist
+$component C4
+ C
+$endlist
+$component C5
+ C
+$endlist
+$component C6
+ C
+$endlist
+$component C7
+ C
+$endlist
+$component C8
+ C
+$endlist
+$component D1
+ D?
+ S*
+$endlist
+$component D2
+ D?
+ S*
+$endlist
+$component D3
+ D?
+ S*
+$endlist
+$component D4
+ D?
+ S*
+$endlist
+$component D5
+ D?
+ S*
+$endlist
+$component D6
+ D?
+ S*
+$endlist
+$component D7
+ D?
+ S*
+$endlist
+$component D8
+ D?
+ S*
+$endlist
+$component D9
+ D?
+ S*
+$endlist
+$component D10
+ D?
+ S*
+$endlist
+$component D11
+ D?
+ S*
+$endlist
+$component D12
+ D?
+ S*
+$endlist
+$component D13
+ D?
+ S*
+$endlist
+$component D14
+ D?
+ S*
+$endlist
+$component D15
+ D?
+ S*
+$endlist
+$component D16
+ D?
+ S*
+$endlist
+$component M1
+ motor
+$endlist
+$component M2
+ motor
+$endlist
+$component M3
+ motor
+$endlist
+$component M4
+ motor
+$endlist
+$endfootprintlist
+}
