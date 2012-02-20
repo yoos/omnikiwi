@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPCB (2010-04-21 BZR 23xx)-stable date = Wed 07 Sep 2011 04:45:30 PM PDT
+Cmp-Mod V01 Created by CvPCB (2010-04-21 BZR 23xx)-stable date = Tue 08 Nov 2011 11:20:15 AM PST
 
 BeginCmp
 TimeStamp = /4B9F3BDA;
@@ -50,122 +50,115 @@ IdModule  = C2V10;
 EndCmp
 
 BeginCmp
-TimeStamp = /4BA5BC95;
-Reference = C8;
-ValeurCmp = 470;
-IdModule  = C2V10;
-EndCmp
-
-BeginCmp
 TimeStamp = /4BA5AD19;
 Reference = D1;
 ValeurCmp = DIODE;
-IdModule  = SM2112L;
+IdModule  = SM1210L;
 EndCmp
 
 BeginCmp
 TimeStamp = /4BA5ADFA;
 Reference = D2;
 ValeurCmp = DIODE;
-IdModule  = SM2112L;
+IdModule  = SM1210L;
 EndCmp
 
 BeginCmp
 TimeStamp = /4BA5AE0D;
 Reference = D3;
 ValeurCmp = DIODE;
-IdModule  = SM2112L;
+IdModule  = SM1210L;
 EndCmp
 
 BeginCmp
 TimeStamp = /4BA5AE1F;
 Reference = D4;
 ValeurCmp = DIODE;
-IdModule  = SM2112L;
+IdModule  = SM1210L;
 EndCmp
 
 BeginCmp
 TimeStamp = /4BA5AD2B;
 Reference = D5;
 ValeurCmp = DIODE;
-IdModule  = SM2112L;
+IdModule  = SM1210L;
 EndCmp
 
 BeginCmp
 TimeStamp = /4BA5ADFD;
 Reference = D6;
 ValeurCmp = DIODE;
-IdModule  = SM2112L;
+IdModule  = SM1210L;
 EndCmp
 
 BeginCmp
 TimeStamp = /4BA5AE10;
 Reference = D7;
 ValeurCmp = DIODE;
-IdModule  = SM2112L;
+IdModule  = SM1210L;
 EndCmp
 
 BeginCmp
 TimeStamp = /4BA5AE24;
 Reference = D8;
 ValeurCmp = DIODE;
-IdModule  = SM2112L;
+IdModule  = SM1210L;
 EndCmp
 
 BeginCmp
 TimeStamp = /4BA5AD2E;
 Reference = D9;
 ValeurCmp = DIODE;
-IdModule  = SM2112L;
+IdModule  = SM1210L;
 EndCmp
 
 BeginCmp
 TimeStamp = /4BA5ADFF;
 Reference = D10;
 ValeurCmp = DIODE;
-IdModule  = SM2112L;
+IdModule  = SM1210L;
 EndCmp
 
 BeginCmp
 TimeStamp = /4BA5AE12;
 Reference = D11;
 ValeurCmp = DIODE;
-IdModule  = SM2112L;
+IdModule  = SM1210L;
 EndCmp
 
 BeginCmp
 TimeStamp = /4BA5AE26;
 Reference = D12;
 ValeurCmp = DIODE;
-IdModule  = SM2112L;
+IdModule  = SM1210L;
 EndCmp
 
 BeginCmp
 TimeStamp = /4BA5AD31;
 Reference = D13;
 ValeurCmp = DIODE;
-IdModule  = SM2112L;
+IdModule  = SM1210L;
 EndCmp
 
 BeginCmp
 TimeStamp = /4BA5AE02;
 Reference = D14;
 ValeurCmp = DIODE;
-IdModule  = SM2112L;
+IdModule  = SM1210L;
 EndCmp
 
 BeginCmp
 TimeStamp = /4BA5AE16;
 Reference = D15;
 ValeurCmp = DIODE;
-IdModule  = SM2112L;
+IdModule  = SM1210L;
 EndCmp
 
 BeginCmp
 TimeStamp = /4BA5AE2D;
 Reference = D16;
 ValeurCmp = DIODE;
-IdModule  = SM2112L;
+IdModule  = SM1210L;
 EndCmp
 
 BeginCmp
@@ -228,7 +221,7 @@ BeginCmp
 TimeStamp = /4BA0A7C4;
 Reference = D25;
 ValeurCmp = PWR;
-IdModule  = LEDV;
+IdModule  = SM0805;
 EndCmp
 
 BeginCmp

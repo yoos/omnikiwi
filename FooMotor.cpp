@@ -10,7 +10,7 @@ FooMotor::FooMotor (int pin1, int pin2)
 
 void FooMotor::Spin (int targetSpeed)
 {
-    targetSpeed = (targetSpeed+1) * 127.5
+    //targetSpeed = (targetSpeed+1) * 127.5
     if (targetSpeed > 128)
     {
         analogSig = (targetSpeed - 128)*2;
