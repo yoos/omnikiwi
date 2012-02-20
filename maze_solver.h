@@ -6,12 +6,18 @@
 #ifndef MAZE_SOLVER_H
 #define MAZE_SOLVER_H
 
+#include "globals.h"
+#include "motors.h"
+
 class MazeSolver {
+    float rotSpeed;
+    float transDir;
+    float transSpeed;
 
-
-public
+public:
     MazeSolver();
-}
+    void run();
+};
 
 #endif // MAZE_SOLVER_H
 

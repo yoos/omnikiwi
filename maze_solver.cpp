@@ -8,3 +8,7 @@
 MazeSolver::MazeSolver() {
 }
 
+void MazeSolver::run() {
+    calculate_pwm_outputs(rotSpeed, transDir, transSpeed);
+}
+
