@@ -15,12 +15,18 @@ void sendTelemetry(int nextRuntime) {
     // Report motor values.
     // ========================================================================
     #ifdef SEND_MOTOR_VALUES
-    sp("MR: ");
-    sp(pwmOut[0]);
-    sp("  ");
-    sp("ML: ");
-    sp(pwmOut[1]);
-    sp("  ");
+    sp("M( ");
+    for (int i=0; i<3; i++) {
+        if (digOut[i]) {
+            sp("+");
+        }
+        else {
+            sp("-");
+        }
+        sp(pwmOut[i]);
+        sp(" ");
+    }
+    sp(")  ");
     #endif // SEND_MOTOR_VALUES
 
     // Report loop time.
