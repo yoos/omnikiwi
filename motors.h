@@ -41,12 +41,12 @@ void calculate_pwm_outputs(float rotSpeed, float transDir, float transSpeed) {
     motorSpeed[MOTOR_R] = rotComponent + v2w(transSpeed * cos(transDir - 2*PI/3));
     motorSpeed[MOTOR_L] = rotComponent + v2w(transSpeed * cos(transDir + 2*PI/3));
 
-    sp("MS( ");
-    for (int i=0; i<3; i++) {
-        sp(motorSpeed[i]);
-        sp(" ");
-    }
-    sp(")  ");
+    //sp("MS( ");
+    //for (int i=0; i<3; i++) {
+    //    sp(motorSpeed[i]);
+    //    sp(" ");
+    //}
+    //sp(")  ");
 
     for (int i=0; i<3; i++) {
         // Set direction of motors.
