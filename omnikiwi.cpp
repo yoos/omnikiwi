@@ -7,6 +7,7 @@
 
 #include <Servo.h>
 #include <Wire.h>
+#include "maze_solver.cpp"
 #include "globals.h"
 #include "telemetry.h"
 
@@ -18,12 +19,17 @@ int main(void) {
 
     Serial.begin(BAUDRATE);
 
-    Servo pwmDevice[2];
+    Servo pwmDevice[3];
+    pwmDevice[MOTOR_T].attach(MT_PWM);
     pwmDevice[MOTOR_R].attach(MR_PWM);
     pwmDevice[MOTOR_L].attach(ML_PWM);
 
+    pinMode(MT_DIG, OUTPUT);
     pinMode(MR_DIG, OUTPUT);
     pinMode(ML_DIG, OUTPUT);
+
+    // Initialize bot.
+    MazeSolver mazer;
 
     // Variables
 
@@ -41,8 +47,7 @@ int main(void) {
             // Control loop
             // ================================================================
             if (loopCount % CONTROL_LOOP_INTERVAL == 0) {
-                digitalWrite(MR_DIG, 1);
-                digitalWrite(ML_DIG, 0);
+                mazer.run();
             }
 
             // ================================================================
