@@ -12,7 +12,8 @@
 // Variables
 // ============================================================================
 int loopCount;   // Count system loops.
-uint16_t pwmOut[3];
+uint8_t  digOut[3];   // Motor digital outputs.
+uint16_t pwmOut[3];   // Motor PWM outputs.
 float bodyDCM[3][3];   // Current body orientation calculated by IMU.
 float targetRot[3], currentRot[3], pidRot[3];
 
@@ -76,6 +77,12 @@ struct PIDdata {
 #define CONTROL_LOOP_INTERVAL   2   // 1/2 master = 50 Hz. NOTE: This frequency should be HIGHER than comm.py's dataSend frequency!
 #define TELEMETRY_LOOP_INTERVAL 2   // 1/2 master = 50 Hz.
 
+#define MOVE_REL_BODY   // Move relative to body.
+//#define MOVE_REL_WORLD   // Move relative to world.
+
+#define TMIN 750    // L298H takes this as minimum PWM input. TODO: really?
+#define TMAX 2200   // L298H takes this as maximum PWM input. TODO: really?
+
 #define MOTOR_T 0   // Tail motor array index.
 #define MOTOR_R 1   // Right motor array index.
 #define MOTOR_L 2   // Left motor array index.
@@ -100,6 +107,9 @@ struct PIDdata {
 // Hardware configuration: any parameter that is changed so infrequently that
 // it may as well be hard-coded.
 // ============================================================================
+#define WHEEL_DIAMETER 0.06   // Effective wheel diameter in meters.
+#define MAX_MOTOR_SPEED 36.652   // Maximum motor speed in rad/s (350 RPM at 6V).
+
 #define MT_PWM 9   // Tail motor PWM pin.
 #define MT_DIG 8   // Tail motor digital pin.
 #define MR_PWM 5   // Right motor PWM pin.
