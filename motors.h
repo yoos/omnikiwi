@@ -12,13 +12,14 @@
 /*! Convert wheel rotation speed (rad/s) to PWM.
  */
 uint16_t w2pwm(float rotSpeed) {
-    return (uint16_t) (TMIN + (TMAX - TMIN) * (rotSpeed / MAX_MOTOR_SPEED));
+    int sign = (rotSpeed > 0) ? 1 : -1;
+    return (uint16_t) (TMIN + (TMAX - TMIN) * sign * (rotSpeed / MAX_MOTOR_SPEED));
 }
 
 /*! Convert linear velocity (m/s) to required wheel rotation speed (rad/s).
  */
 float v2w(float velocity) {
-    return velocity / (WHEEL_DIAMETER * PI) * 2*PI;
+    return velocity / WHEEL_RADIUS;
 }
 
 /*! Calculate PWM outputs for an input rotation speed (rad/s) and translation direction (rad) at some speed (m/s).
@@ -28,17 +29,31 @@ float v2w(float velocity) {
  *  \param transSpeed Translation speed in m/s
  */
 void calculate_pwm_outputs(float rotSpeed, float transDir, float transSpeed) {
-    float transComponent[3];   // Component of motor spin for translation.
+    float rotComponent;   // Rotational component of motor spin.
+    float motorSpeed[3];
 
     #ifdef MOVE_REL_BODY
     // Calculate motor outputs to move relative to the body.
 
-    transComponent[MOTOR_T] = v2w(transSpeed * sin(transDir));
-    transComponent[MOTOR_R] = v2w(transSpeed * sin(transDir - PI/3));
-    transComponent[MOTOR_L] = v2w(transSpeed * sin(transDir - 2*PI/3));
+    rotComponent = rotSpeed * ROBOT_RADIUS / WHEEL_RADIUS;
+
+    motorSpeed[MOTOR_T] = rotComponent + v2w(transSpeed * cos(transDir));
+    motorSpeed[MOTOR_R] = rotComponent + v2w(transSpeed * cos(transDir - 2*PI/3));
+    motorSpeed[MOTOR_L] = rotComponent + v2w(transSpeed * cos(transDir + 2*PI/3));
+
+    sp("MS( ");
+    for (int i=0; i<3; i++) {
+        sp(motorSpeed[i]);
+        sp(" ");
+    }
+    sp(")  ");
 
     for (int i=0; i<3; i++) {
-        pwmOut[i] = w2pwm(rotSpeed) + w2pwm(transComponent[i]);
+        // Set direction of motors.
+        digOut[i] = (motorSpeed[i] > 0) ? 1 : 0;   // TODO: Check this!
+
+        // Set speed of motors.
+        pwmOut[i] = w2pwm(motorSpeed[i]);
     }
 
     #endif // MOVE_REL_BODY
