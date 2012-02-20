@@ -12,7 +12,7 @@
 // Variables
 // ============================================================================
 int loopCount;   // Count system loops.
-uint16_t pwmOut[2];
+uint16_t pwmOut[3];
 float bodyDCM[3][3];   // Current body orientation calculated by IMU.
 float targetRot[3], currentRot[3], pidRot[3];
 
@@ -75,10 +75,10 @@ struct PIDdata {
 #define MASTER_DT           10000   // 10000 us interval = 100 Hz master loop.
 #define CONTROL_LOOP_INTERVAL   2   // 1/2 master = 50 Hz. NOTE: This frequency should be HIGHER than comm.py's dataSend frequency!
 #define TELEMETRY_LOOP_INTERVAL 2   // 1/2 master = 50 Hz.
-#define DOGLIFE 300   // Watchdog life in milliseconds.
 
-#define MOTOR_R 0   // Right motor array index.
-#define MOTOR_L 1   // Left motor array index.
+#define MOTOR_T 0   // Tail motor array index.
+#define MOTOR_R 1   // Right motor array index.
+#define MOTOR_L 2   // Left motor array index.
 
 // ============================================================================
 // Buttons
@@ -100,6 +100,8 @@ struct PIDdata {
 // Hardware configuration: any parameter that is changed so infrequently that
 // it may as well be hard-coded.
 // ============================================================================
+#define MT_PWM 9   // Tail motor PWM pin.
+#define MT_DIG 8   // Tail motor digital pin.
 #define MR_PWM 5   // Right motor PWM pin.
 #define MR_DIG 4   // Right motor digital pin.
 #define ML_PWM 6   // Left motor PWM pin.
