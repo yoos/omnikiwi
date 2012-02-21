@@ -23,7 +23,7 @@ void sendTelemetry(int nextRuntime) {
         else {
             sp("-");
         }
-        sp(pwmOut[i]);
+        sp(analogOut[i]);
         sp(" ");
     }
     sp(")  ");

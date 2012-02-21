@@ -14,6 +14,8 @@ class MazeSolver {
     float transDir;
     float transSpeed;
 
+    float counter;
+
 public:
     MazeSolver();
     void run();

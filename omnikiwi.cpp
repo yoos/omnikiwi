@@ -5,7 +5,6 @@
  *  Details.
  */
 
-#include <Servo.h>
 #include <Wire.h>
 #include "maze_solver.cpp"
 #include "globals.h"
@@ -18,11 +17,6 @@ int main(void) {
     Wire.begin();
 
     Serial.begin(BAUDRATE);
-
-    Servo pwmDevice[3];
-    pwmDevice[MOTOR_T].attach(MT_PWM);
-    pwmDevice[MOTOR_R].attach(MR_PWM);
-    pwmDevice[MOTOR_L].attach(ML_PWM);
 
     pinMode(MT_DIG, OUTPUT);
     pinMode(MR_DIG, OUTPUT);
@@ -48,6 +42,14 @@ int main(void) {
             // ================================================================
             if (loopCount % CONTROL_LOOP_INTERVAL == 0) {
                 mazer.run();
+
+                analogWrite(MT_PWM, analogOut[MOTOR_T]);
+                analogWrite(MR_PWM, analogOut[MOTOR_R]);
+                analogWrite(ML_PWM, analogOut[MOTOR_L]);
+
+                digitalWrite(MT_DIG, digOut[MOTOR_T]);
+                digitalWrite(MR_DIG, digOut[MOTOR_R]);
+                digitalWrite(ML_DIG, digOut[MOTOR_L]);
             }
 
             // ================================================================

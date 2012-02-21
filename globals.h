@@ -13,7 +13,7 @@
 // ============================================================================
 int loopCount;   // Count system loops.
 uint8_t  digOut[3];   // Motor digital outputs.
-uint16_t pwmOut[3];   // Motor PWM outputs.
+float analogOut[3];   // Motor PWM outputs.
 float bodyDCM[3][3];   // Current body orientation calculated by IMU.
 float targetRot[3], currentRot[3], pidRot[3];
 
@@ -80,8 +80,8 @@ struct PIDdata {
 #define MOVE_REL_BODY   // Move relative to body.
 //#define MOVE_REL_WORLD   // Move relative to world.
 
-#define TMIN 750    // L298H takes this as minimum PWM input. TODO: really?
-#define TMAX 2200   // L298H takes this as maximum PWM input. TODO: really?
+#define TMIN 0     // Min analog out.
+#define TMAX 255   // Max analog out.
 
 #define MOTOR_T 0   // Tail motor array index.
 #define MOTOR_R 1   // Right motor array index.
