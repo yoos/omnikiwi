@@ -13,7 +13,7 @@
  */
 float w2analog(float rotSpeed) {
     int sign = (rotSpeed > 0) ? 1 : -1;
-    if (rotSpeed >= 0) {
+    if (rotSpeed > 0) {
         return (TMAX - (TMAX - TMIN) * ( rotSpeed / MAX_MOTOR_SPEED));
     }
     else {
