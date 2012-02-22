@@ -10,11 +10,11 @@
 #include "motors.h"
 
 class MazeSolver {
-    float rotSpeed;
-    float transDir;
-    float transSpeed;
+    uint64_t unitMoveStartTime;
+    uint64_t unitMoveEndTime;
 
-    float counter;
+    void unitTrans(float, float);
+    void stop();
 
 public:
     MazeSolver();
