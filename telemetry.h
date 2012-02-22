@@ -11,6 +11,10 @@
 #include "globals.h"
 
 void sendTelemetry(int nextRuntime) {
+    // Send move number.
+    sp(moveCounter);
+    sp("  ");
+
     // ========================================================================
     // Report motor values.
     // ========================================================================
@@ -28,6 +32,9 @@ void sendTelemetry(int nextRuntime) {
     }
     sp(")  ");
     #endif // SEND_MOTOR_VALUES
+
+    sp(analogRead(5));
+    sp("  ");
 
     // Report loop time.
     sp("dt: ");
