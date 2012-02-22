@@ -12,10 +12,14 @@
 // Variables
 // ============================================================================
 int loopCount;   // Count system loops.
-uint8_t  digOut[3];   // Motor digital outputs.
+uint8_t digOut[3];    // Motor digital outputs.
 float analogOut[3];   // Motor PWM outputs.
 float bodyDCM[3][3];   // Current body orientation calculated by IMU.
 float targetRot[3], currentRot[3], pidRot[3];
+
+float rotSpeed, transDir, transSpeed;
+
+uint16_t moveCounter;
 
 
 // ============================================================================
@@ -43,7 +47,7 @@ struct PIDdata {
 // ============================================================================
 // SERIAL IN
 // ============================================================================
-#define BAUDRATE 115200
+#define BAUDRATE 57600
 #define SERHEAD     255   // Serial header byte. Pilot interprets the four bytes following this header byte as motor commands.
 #define PACKETSIZE 6     // Each packet contains (excluding header) X, Y, Twist, Z, and two bytes for button values.
 #define INPUT_MIN  0     // Minimum integer input value from joystick.
@@ -86,6 +90,9 @@ struct PIDdata {
 #define MOTOR_T 0   // Tail motor array index.
 #define MOTOR_R 1   // Right motor array index.
 #define MOTOR_L 2   // Left motor array index.
+
+#define UNIT_DISTANCE 0.3   // "Unit" distance for maze solver.
+#define UNIT_ROT (PI/2)     // "Unit" rotation for maze solver.
 
 // ============================================================================
 // Buttons
