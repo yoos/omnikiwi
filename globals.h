@@ -114,8 +114,8 @@ struct PIDdata {
 // Hardware configuration: any parameter that is changed so infrequently that
 // it may as well be hard-coded.
 // ============================================================================
-#define ROBOT_RADIUS 0.07   // Robot wheelbase diameter in meters.
-#define WHEEL_RADIUS 0.03   // Effective wheel diameter in meters.
+#define ROBOT_RADIUS 0.07   // Robot wheelbase radius in meters.
+#define WHEEL_RADIUS 0.0271   // Effective wheel radius in meters.
 #define MAX_MOTOR_SPEED 36.652   // Maximum motor speed in rad/s (350 RPM at 6V).
 
 #define MT_PWM 9   // Tail motor PWM pin.
