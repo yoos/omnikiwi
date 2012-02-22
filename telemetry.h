@@ -33,8 +33,17 @@ void sendTelemetry(int nextRuntime) {
     sp(")  ");
     #endif // SEND_MOTOR_VALUES
 
-    sp(analogRead(5));
-    sp("  ");
+    // ========================================================================
+    // Read LED distance sensors.
+    // ========================================================================
+    #ifdef SEND_SENSOR_READINGS
+    sp("D( ");
+    for (int i=0; i<6; i++) {
+        sp(distSensors[i]);
+        sp(" ");
+    }
+    sp(")  ");
+    #endif // SEND_SENSOR_READINGS
 
     // Report loop time.
     sp("dt: ");
