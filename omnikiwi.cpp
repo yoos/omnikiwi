@@ -7,6 +7,7 @@
 
 #include <Wire.h>
 #include "maze_solver.cpp"
+#include "pilot.cpp"
 #include "globals.h"
 #include "telemetry.h"
 
@@ -24,6 +25,7 @@ int main(void) {
 
     // Initialize bot.
     MazeSolver mazer;
+    Pilot pilot;
 
     // Variables
 
@@ -41,6 +43,8 @@ int main(void) {
             // Control loop
             // ================================================================
             if (loopCount % CONTROL_LOOP_INTERVAL == 0) {
+                pilot.listen();
+                pilot.fly();
                 mazer.run();
 
                 analogWrite(MT_PWM, analogOut[MOTOR_T]);
