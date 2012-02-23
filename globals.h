@@ -16,7 +16,9 @@ uint8_t digOut[3];    // Motor digital outputs.
 float analogOut[3];   // Motor PWM outputs.
 float bodyDCM[3][3];   // Current body orientation calculated by IMU.
 float targetRot[3], currentRot[3], pidRot[3];
-uint16_t distSensors[6];   // LED distance sensor readings.
+
+uint16_t ledReadings[6];   // LED distance sensor readings.
+int cathodePins[] = {14, 15, 16, 17, 18, 19};
 
 float rotSpeed, transDir, transSpeed;
 
@@ -121,32 +123,18 @@ struct PIDdata {
 #define MAX_MOTOR_SPEED 36.652   // Maximum motor speed in rad/s (350 RPM at 6V).
 
 // Digital pin assignments
-#define SENS_DIG 2   // Digital pin for LED sensors.
-#define UNDEF_PIN 3
+#define MT_DIG 2   // Tail motor digital pin.
+#define MT_PWM 3   // Tail motor PWM pin.
 #define MR_DIG 4   // Right motor digital pin.
 #define MR_PWM 5   // Right motor PWM pin.
 #define ML_PWM 6   // Left motor PWM pin.
 #define ML_DIG 7   // Left motor digital pin.
-#define MT_DIG 8   // Tail motor digital pin.
-#define MT_PWM 9   // Tail motor PWM pin.
+#define UNDEF_PIN 8
+#define UNDEF_PIN 9
 #define UNDEF_PIN 10
 #define UNDEF_PIN 11
 #define UNDEF_PIN 12
 #define UNDEF_PIN 13
-#define LED_0_DIG 14   // Analog pin 0 when used digitally.
-#define LED_1_DIG 15   // Analog pin 1 when used digitally.
-#define LED_2_DIG 16   // Analog pin 2 when used digitally.
-#define LED_3_DIG 17   // Analog pin 3 when used digitally.
-#define LED_4_DIG 18   // Analog pin 4 when used digitally.
-#define LED_5_DIG 19   // Analog pin 5 when used digitally.
-
-// Analog pin assignments
-#define LED_0_ANA 0
-#define LED_1_ANA 1
-#define LED_2_ANA 2
-#define LED_3_ANA 3
-#define LED_4_ANA 4
-#define LED_5_ANA 5
 
 
 // ============================================================================
