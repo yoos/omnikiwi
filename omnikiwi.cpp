@@ -8,6 +8,7 @@
 #include <Wire.h>
 #include "maze_solver.cpp"
 #include "pilot.cpp"
+#include "sensors.cpp"
 #include "globals.h"
 #include "telemetry.h"
 
@@ -25,11 +26,12 @@ int main(void) {
 
     // Initialize bot.
     MazeSolver mazer;
+    Sensors sensors;
     Pilot pilot;
 
-    // Variables
+   // Variables
 
-    unsigned long nextRuntime = micros();
+    uint64_t nextRuntime = micros();
     loopCount = 0;
 
     while (1) {
@@ -45,6 +47,7 @@ int main(void) {
             if (loopCount % CONTROL_LOOP_INTERVAL == 0) {
                 pilot.listen();
                 pilot.fly();
+                sensors.read();
                 mazer.run();
 
                 analogWrite(MT_PWM, analogOut[MOTOR_T]);
