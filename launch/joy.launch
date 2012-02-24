@@ -1,0 +1,13 @@
+<!-- %Tag(FULL)%-->
+<launch>
+
+    <!-- joy node -->
+    <node name="tri_joy" pkg="joy" type="joy_node" respawn="true" >
+        <param name="dev" type="string" value="/dev/input/js0" />
+        <param name="deadzone" value="0" />
+    </node>
+
+    <node name="kiwi_tx" pkg="omnikiwi" type="groundstation.py" output="screen" />
+
+</launch>
+<!-- %EndTag(FULL)%-->

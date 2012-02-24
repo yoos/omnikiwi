@@ -1,0 +1,16 @@
+<package>
+  <description brief="omnikiwi">
+
+     omnikiwi
+
+  </description>
+  <author></author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/omnikiwi</url>
+  <depend package="rospy"/>
+  <depend package="sensor_msgs"/>
+
+</package>
+
+
