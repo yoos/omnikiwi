@@ -16,13 +16,13 @@ uint8_t digOut[3];    // Motor digital outputs.
 float analogOut[3];   // Motor PWM outputs.
 float bodyDCM[3][3];   // Current body orientation calculated by IMU.
 float targetRot[3], currentRot[3], pidRot[3];
-
-uint16_t ledReadings[6];   // LED distance sensor readings.
-int cathodePins[] = {14, 15, 16, 17, 18, 19};
-
 float rotSpeed, transDir, transSpeed;
 
 uint16_t moveCounter;
+
+uint16_t ledReadings[6];   // LED distance sensor readings.
+int anodePins[]   = {8, 9, 10, 11, 12, 13};
+int cathodePins[] = {14, 15, 16, 17, 18, 19};
 
 
 // ============================================================================
@@ -81,9 +81,9 @@ struct PIDdata {
 // Software configuration: any parameter that is purely code-related or is
 // relatively frequently changed.
 // ============================================================================
-#define MASTER_DT           10000   // 10000 us interval = 100 Hz master loop.
-#define CONTROL_LOOP_INTERVAL   2   // 1/2 master = 50 Hz. NOTE: This frequency should be HIGHER than comm.py's dataSend frequency!
-#define TELEMETRY_LOOP_INTERVAL 10   // 1/2 master = 50 Hz.
+#define MASTER_DT           30000   // 10000 us interval = 100 Hz master loop.
+#define CONTROL_LOOP_INTERVAL   1   // 1/2 master = 50 Hz. NOTE: This frequency should be HIGHER than comm.py's dataSend frequency!
+#define TELEMETRY_LOOP_INTERVAL 2   // 1/2 master = 50 Hz.
 
 #define MOVE_REL_BODY   // Move relative to body.
 //#define MOVE_REL_WORLD   // Move relative to world.
@@ -97,6 +97,9 @@ struct PIDdata {
 
 #define UNIT_DISTANCE 0.3   // "Unit" distance for maze solver.
 #define UNIT_ROT (PI/2)     // "Unit" rotation for maze solver.
+
+#define LED_DISCHARGE_TIME 17   // Time in milliseconds.
+#define LED_TRIGGER_THRESHOLD 450   // Analog threshold between digital on/off.
 
 // ============================================================================
 // Buttons
@@ -121,6 +124,7 @@ struct PIDdata {
 #define ROBOT_RADIUS 0.07   // Robot wheelbase radius in meters.
 #define WHEEL_RADIUS 0.0271   // Effective wheel radius in meters.
 #define MAX_MOTOR_SPEED 36.652   // Maximum motor speed in rad/s (350 RPM at 6V).
+#define NUM_OF_LEDS 6   // Number of LED sensors.
 
 // Digital pin assignments
 #define MT_DIG 2   // Tail motor digital pin.
@@ -129,12 +133,14 @@ struct PIDdata {
 #define MR_PWM 5   // Right motor PWM pin.
 #define ML_PWM 6   // Left motor PWM pin.
 #define ML_DIG 7   // Left motor digital pin.
-#define UNDEF_PIN 8
-#define UNDEF_PIN 9
-#define UNDEF_PIN 10
-#define UNDEF_PIN 11
-#define UNDEF_PIN 12
-#define UNDEF_PIN 13
+
+// Following six pins used as LED anodes.
+//#define UNDEF_PIN 8
+//#define UNDEF_PIN 9
+//#define UNDEF_PIN 10
+//#define UNDEF_PIN 11
+//#define UNDEF_PIN 12
+//#define UNDEF_PIN 13
 
 
 // ============================================================================
