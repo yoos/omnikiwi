@@ -10,7 +10,7 @@
 
 #include "globals.h"
 
-void sendTelemetry(int nextRuntime) {
+void sendTelemetry(uint64_t nextRuntime) {
     // Send move number.
     sp(moveCounter);
     sp("  ");
@@ -39,15 +39,26 @@ void sendTelemetry(int nextRuntime) {
     #ifdef SEND_SENSOR_READINGS
     sp("D( ");
     for (int i=0; i<6; i++) {
-        sp(distSensors[i]);
+        sp(ledReadings[i]);
         sp(" ");
     }
     sp(")  ");
     #endif // SEND_SENSOR_READINGS
 
+    sp("Dir( ");
+    for (int i=0; i<6; i++) {
+        if (ledReadings[i] > LED_TRIGGER_THRESHOLD) {
+            sp("1");
+        }
+        else {
+            sp("0");
+        }
+    }
+    sp(")  ");
+
     // Report loop time.
     sp("dt: ");
-    spln((int) (micros() - (nextRuntime - MASTER_DT)));
+    spln((int) ((micros() - (nextRuntime - MASTER_DT))/1000));
 }
 
 #endif // TELEMETRY_H
