@@ -47,7 +47,7 @@ void sendTelemetry(uint64_t nextRuntime) {
 
     sp("Dir( ");
     for (int i=0; i<6; i++) {
-        if (ledReadings[i] > LED_TRIGGER_THRESHOLD) {
+        if (ledReadings[i] > MAZE_THRESHOLD_6CM) {
             sp("1");
         }
         else {
