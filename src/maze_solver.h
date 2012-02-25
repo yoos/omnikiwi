@@ -14,19 +14,18 @@ uint64_t unitMoveEndTime;
 
 void (*runUnitAction) ();
 
-void unitTrans();
-
+void transUnit();
 void transForward();
 
-void rotateRight();
-void rotateLeft();
-void rotateBack();
+void veerRight();
+void veerLeft();
 
 void turnRight();
 void turnLeft();
 
-void veerRight();
-void veerLeft();
+void rotateRight();
+void rotateLeft();
+void rotateBack();
 
 void stop();
 
