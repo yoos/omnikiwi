@@ -9,12 +9,33 @@
 #include "globals.h"
 #include "motors.h"
 
-class MazeSolver {
-    uint64_t unitMoveStartTime;
-    uint64_t unitMoveEndTime;
+uint64_t unitMoveStartTime;
+uint64_t unitMoveEndTime;
 
-    void unitTrans(float, float);
-    void stop();
+void (*runUnitAction) ();
+
+void unitTrans();
+
+void transForward();
+
+void rotateRight();
+void rotateLeft();
+void rotateBack();
+
+void turnRight();
+void turnLeft();
+
+void veerRight();
+void veerLeft();
+
+void stop();
+
+
+class MazeSolver {
+    // Controllers
+    void mazeSolver();
+    void lightFollower();
+    void wallFollower();
 
 public:
     MazeSolver();
