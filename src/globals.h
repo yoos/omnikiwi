@@ -21,6 +21,7 @@ float rotSpeed, transDir, transSpeed;
 uint16_t moveCounter;
 
 uint16_t ledReadings[6];   // LED distance sensor readings.
+uint16_t ledZero[] = {260, 0, 0, 0, 0, 0};
 int anodePins[]   = {8, 9, 10, 11, 12, 13};
 int cathodePins[] = {14, 15, 16, 17, 18, 19};
 
@@ -81,9 +82,10 @@ struct PIDdata {
 // Software configuration: any parameter that is purely code-related or is
 // relatively frequently changed.
 // ============================================================================
-#define MASTER_DT           30000   // 10000 us interval = 100 Hz master loop.
-#define CONTROL_LOOP_INTERVAL   1   // 1/2 master = 50 Hz. NOTE: This frequency should be HIGHER than comm.py's dataSend frequency!
-#define TELEMETRY_LOOP_INTERVAL 2   // 1/2 master = 50 Hz.
+#define MASTER_DT            8000   // 8000 us interval = 125 Hz master loop.
+#define CONTROL_LOOP_INTERVAL   1   // 1x master = 125 Hz. NOTE: This frequency should be HIGHER than comm.py's dataSend frequency!
+#define SENSOR_LOOP_INTERVAL   10   // 1/6 master = 33 Hz.
+#define TELEMETRY_LOOP_INTERVAL 4   // 1/4 master = 50 Hz.
 
 #define MOVE_REL_BODY   // Move relative to body.
 //#define MOVE_REL_WORLD   // Move relative to world.
@@ -100,6 +102,15 @@ struct PIDdata {
 
 #define LED_DISCHARGE_TIME 17   // Time in milliseconds.
 #define LED_TRIGGER_THRESHOLD 450   // Analog threshold between digital on/off.
+
+#define MAZE_ROT_SPEED 4
+#define MAZE_VEER_SPEED 0.1
+#define MAZE_TRANS_SPEED 1.0
+
+#define MAZE_FORWARD_THRES 600
+#define MAZE_RIGHT_THRES_LOW  400
+#define MAZE_RIGHT_THRES_HIGH 540
+#define MAZE_LEFT_THRES_NOWALL 300
 
 // ============================================================================
 // Buttons
@@ -121,8 +132,8 @@ struct PIDdata {
 // Hardware configuration: any parameter that is changed so infrequently that
 // it may as well be hard-coded.
 // ============================================================================
-#define ROBOT_RADIUS 0.07   // Robot wheelbase radius in meters.
-#define WHEEL_RADIUS 0.0271   // Effective wheel radius in meters.
+#define ROBOT_RADIUS 0.071   // Robot wheelbase radius in meters.
+#define WHEEL_RADIUS 0.0254   // Effective wheel radius in meters.
 #define MAX_MOTOR_SPEED 36.652   // Maximum motor speed in rad/s (350 RPM at 6V).
 #define NUM_OF_LEDS 6   // Number of LED sensors.
 
