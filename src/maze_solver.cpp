@@ -17,20 +17,9 @@ MazeSolver::MazeSolver() {
 }
 
 void MazeSolver::run() {
-    //if (moveCounter < 5) {
-    //    if (micros() > unitMoveEndTime) {
-    //        unitTrans(0, 0.6);
-    //        moveCounter++;
-    //    }
-    //    calculate_pwm_outputs(rotSpeed, transDir, transSpeed);
-    //}
-    //else {
-    //    stop();
-    //}
-
     mazeSolver();
+    //lightFollower();
     //wallFollower();
-
 }
 
 void MazeSolver::mazeSolver() {
