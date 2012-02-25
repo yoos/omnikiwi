@@ -20,7 +20,7 @@ float rotSpeed, transDir, transSpeed;
 
 uint16_t moveCounter;
 
-uint16_t ledReadings[6];   // LED distance sensor readings.
+uint16_t chargeReadings[6], ledReadings[6];   // LED distance sensor readings.
 uint16_t ledZero[] = {260, 0, 0, 0, 0, 0};
 int anodePins[]   = {8, 9, 10, 11, 12, 13};
 int cathodePins[] = {14, 15, 16, 17, 18, 19};
@@ -84,8 +84,8 @@ struct PIDdata {
 // ============================================================================
 #define MASTER_DT            8000   // 8000 us interval = 125 Hz master loop.
 #define CONTROL_LOOP_INTERVAL   1   // 1x master = 125 Hz. NOTE: This frequency should be HIGHER than comm.py's dataSend frequency!
-#define SENSOR_LOOP_INTERVAL   10   // 1/6 master = 33 Hz.
-#define TELEMETRY_LOOP_INTERVAL 4   // 1/4 master = 50 Hz.
+#define SENSOR_LOOP_INTERVAL    6   // 1/6 master = 20.83 Hz.
+#define TELEMETRY_LOOP_INTERVAL 4   // 1/4 master = 31.25 Hz.
 
 #define MOVE_REL_BODY   // Move relative to body.
 //#define MOVE_REL_WORLD   // Move relative to world.
@@ -101,7 +101,6 @@ struct PIDdata {
 #define UNIT_ROT (PI/2)     // "Unit" rotation for maze solver.
 
 #define LED_DISCHARGE_TIME 17   // Time in milliseconds.
-#define LED_TRIGGER_THRESHOLD 450   // Analog threshold between digital on/off.
 
 #define MAZE_ROT_SPEED 4
 #define MAZE_VEER_SPEED 0.1
