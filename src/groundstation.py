@@ -12,8 +12,8 @@ import roslib; roslib.load_manifest("omnikiwi")
 import rospy
 from sensor_msgs.msg import Joy
 
-# omnikiwi
-import triconfig as cfg   # Import config.
+# Omnikiwi
+import kiwiconfig as cfg   # Import config.
 
 armed = False   # System arm status. Set to True once throttle is set to zero. Communication will not start until this is True.
 
@@ -36,17 +36,20 @@ def joy2byte (joyVal, axisIndex):
 def joyCallback (myJoy):
     global axisValues, buttonValues
 
-    axisValues[cfg.axisX] = joy2byte(myJoy.axes[0], cfg.axisX)   # X
-    axisValues[cfg.axisY] = joy2byte(myJoy.axes[1], cfg.axisY)   # Y
+    if len(myJoy.axes) == 2:   # Using laptop as joystick
+        axisValues[cfg.axisX] = joy2byte(myJoy.axes[0], cfg.axisX)   # X
+        axisValues[cfg.axisY] = joy2byte(myJoy.axes[1], cfg.axisY)   # Y
+        axisValues[cfg.axisT] = joy2byte(0, cfg.axisT)   # Dummy T
+        axisValues[cfg.axisZ] = joy2byte(1, cfg.axisZ)   # Dummy Z, always full throttle.
 
-    if len(myJoy.axes) == 3:
+    elif len(myJoy.axes) == 3:   # Non-twisty joystick
         axisValues[cfg.axisT] = joy2byte(0, cfg.axisT)   # Dummy T
         axisValues[cfg.axisZ] = joy2byte(myJoy.axes[2], cfg.axisZ)   # Z
-    else:
+    elif len(myJoy.axes) == 6:   # Attack3D twisty joystick
         axisValues[cfg.axisT] = joy2byte(myJoy.axes[2], cfg.axisT)   # T
         axisValues[cfg.axisZ] = joy2byte(myJoy.axes[3], cfg.axisZ)   # Z
 
-        # Mars Rover joystick
+        # Mars Rover joystick (swap T and Z axis indices)
         #axisValues[cfg.axisT] = joy2byte(myJoy.axes[3], cfg.axisT)   # T
         #axisValues[cfg.axisZ] = joy2byte(myJoy.axes[2], cfg.axisZ)   # Z
 
