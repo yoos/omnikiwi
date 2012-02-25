@@ -21,9 +21,6 @@ float rotSpeed, transDir, transSpeed;
 uint16_t moveCounter;
 
 uint16_t chargeReadings[6], ledReadings[6];   // LED distance sensor readings.
-uint16_t ledZero[] = {260, 0, 0, 0, 0, 0};
-int anodePins[]   = {8, 9, 10, 11, 12, 13};
-int cathodePins[] = {14, 15, 16, 17, 18, 19};
 
 
 // ============================================================================
@@ -97,19 +94,44 @@ struct PIDdata {
 #define MOTOR_R 1   // Right motor array index.
 #define MOTOR_L 2   // Left motor array index.
 
+// Maze solver
+#define LOCATION COV019
+//#define LOCATION KELLEY
+
 #define UNIT_DISTANCE 0.3   // "Unit" distance for maze solver.
 #define UNIT_ROT (PI/2)     // "Unit" rotation for maze solver.
-
-#define LED_DISCHARGE_TIME 17   // Time in milliseconds.
 
 #define MAZE_ROT_SPEED 4
 #define MAZE_VEER_SPEED 0.1
 #define MAZE_TRANS_SPEED 1.0
 
+#if (LOCATION == "COV019")
+uint16_t ledZero[] = {260, 0, 0, 0, 0, 0};
+
+#define MAZE_THRESHOLD_4CM 590
+#define MAZE_THRESHOLD_6CM 530
+#define MAZE_THRESHOLD_8CM 490
+#define MAZE_THRESHOLD_10CM 450
+#endif // (LOCATION == COV019)
+
+#if (LOCATION == "KELLEY")
+uint16_t ledZero[] = {0, 0, 0, 0, 0, 0};
+
 #define MAZE_FORWARD_THRES 600
 #define MAZE_RIGHT_THRES_LOW  400
 #define MAZE_RIGHT_THRES_HIGH 540
 #define MAZE_LEFT_THRES_NOWALL 300
+#endif // (LOCATION == KELLEY)
+
+#define MAZE_THRESHOLD_FORWARD    MAZE_THRESHOLD_6CM
+#define MAZE_THRESHOLD_RIGHT_HIGH MAZE_THRESHOLD_4CM
+#define MAZE_THRESHOLD_RIGHT_LOW  MAZE_THRESHOLD_6CM
+#define MAZE_THRESHOLD_NOWALL     MAZE_THRESHOLD_10CM
+
+
+// Sensors
+//#define LED_DISCHARGE_TIME 17   // Time in milliseconds.
+
 
 // ============================================================================
 // Buttons
@@ -133,7 +155,7 @@ struct PIDdata {
 // ============================================================================
 #define ROBOT_RADIUS 0.071   // Robot wheelbase radius in meters.
 #define WHEEL_RADIUS 0.0254   // Effective wheel radius in meters.
-#define MAX_MOTOR_SPEED 36.652   // Maximum motor speed in rad/s (350 RPM at 6V).
+#define MAX_MOTOR_SPEED 36.652   // Maximum motor speed in rad/s (350 RPM at 6V). TODO: This varies based on battery voltage. Either make this dynamic or implement rotation sensing using a gyro or encoders.
 #define NUM_OF_LEDS 6   // Number of LED sensors.
 
 // Digital pin assignments
@@ -151,6 +173,10 @@ struct PIDdata {
 //#define UNDEF_PIN 11
 //#define UNDEF_PIN 12
 //#define UNDEF_PIN 13
+
+// LED pins
+static int anodePins[]   = {8, 9, 10, 11, 12, 13};
+static int cathodePins[] = {14, 15, 16, 17, 18, 19};
 
 
 // ============================================================================
