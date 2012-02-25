@@ -95,33 +95,34 @@ struct PIDdata {
 #define MOTOR_L 2   // Left motor array index.
 
 // Maze solver
-#define LOCATION COV019
-//#define LOCATION KELLEY
+#define COV019
+//#define KELLEY
 
 #define UNIT_DISTANCE 0.3   // "Unit" distance for maze solver.
 #define UNIT_ROT (PI/2)     // "Unit" rotation for maze solver.
 
-#define MAZE_ROT_SPEED 4
-#define MAZE_VEER_SPEED 0.1
 #define MAZE_TRANS_SPEED 1.0
+#define MAZE_VEER_SPEED  0.1
+#define MAZE_TURN_SPEED  2.0
+#define MAZE_ROT_SPEED   4.0
 
-#if (LOCATION == "COV019")
+#ifdef COV019
 uint16_t ledZero[] = {260, 0, 0, 0, 0, 0};
 
 #define MAZE_THRESHOLD_4CM 590
 #define MAZE_THRESHOLD_6CM 530
 #define MAZE_THRESHOLD_8CM 490
 #define MAZE_THRESHOLD_10CM 450
-#endif // (LOCATION == COV019)
+#endif // COV019
 
-#if (LOCATION == "KELLEY")
+#ifdef KELLEY
 uint16_t ledZero[] = {0, 0, 0, 0, 0, 0};
 
 #define MAZE_FORWARD_THRES 600
 #define MAZE_RIGHT_THRES_LOW  400
 #define MAZE_RIGHT_THRES_HIGH 540
 #define MAZE_LEFT_THRES_NOWALL 300
-#endif // (LOCATION == KELLEY)
+#endif // KELLEY
 
 #define MAZE_THRESHOLD_FORWARD    MAZE_THRESHOLD_6CM
 #define MAZE_THRESHOLD_RIGHT_HIGH MAZE_THRESHOLD_4CM
