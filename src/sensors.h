@@ -10,6 +10,8 @@ class Sensors {
 
 public:
     Sensors();
+    void chargeLED(int);
+    void readLED(int);
     void read();
 };
 
