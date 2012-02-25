@@ -29,7 +29,7 @@ int main(void) {
     Sensors sensors;
     Pilot pilot;
 
-   // Variables
+    // Variables
 
     uint64_t nextRuntime = micros();
     loopCount = 0;
@@ -42,13 +42,29 @@ int main(void) {
             nextRuntime += MASTER_DT;   // Update next loop start time.
 
             // ================================================================
+            // Sensor loop
+            //
+            // WARNING: This loop is extremely time-sensitive! Make sure the
+            // looptime never exceeds MASTER_DT!
+            // ================================================================
+            for (int i=0; i<NUM_OF_LEDS; i++) {
+                if (loopCount % SENSOR_LOOP_INTERVAL == i) {
+                    // Read requested LED.
+                    sensors.readLED(i);
+
+                    // Charge up the LED two pins down the list since a delay
+                    // of 16 ms seems to work well while our master loop time
+                    // is 8 ms.
+                    sensors.chargeLED((i+2) % NUM_OF_LEDS);
+                }
+            }
+
+            // ================================================================
             // Control loop
             // ================================================================
             if (loopCount % CONTROL_LOOP_INTERVAL == 0) {
-                pilot.listen();
+                //mazer.run();
                 pilot.fly();
-                sensors.read();
-                mazer.run();
 
                 analogWrite(MT_PWM, analogOut[MOTOR_T]);
                 analogWrite(MR_PWM, analogOut[MOTOR_R]);
@@ -63,6 +79,9 @@ int main(void) {
             // Telemetry loop
             // ================================================================
             if (loopCount % TELEMETRY_LOOP_INTERVAL == 0) {
+                pilot.listen();
+            }
+            if (loopCount % TELEMETRY_LOOP_INTERVAL == 1) {
                 sendTelemetry(nextRuntime);
             }
 
