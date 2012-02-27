@@ -36,12 +36,12 @@ def joy2byte (joyVal, axisIndex):
 def joyCallback (myJoy):
     global axisValues, buttonValues
 
+    axisValues[cfg.axisX] = joy2byte(myJoy.axes[0], cfg.axisX)   # X
+    axisValues[cfg.axisY] = joy2byte(myJoy.axes[1], cfg.axisY)   # Y
+
     if len(myJoy.axes) == 2:   # Using laptop as joystick
-        axisValues[cfg.axisX] = joy2byte(myJoy.axes[0], cfg.axisX)   # X
-        axisValues[cfg.axisY] = joy2byte(myJoy.axes[1], cfg.axisY)   # Y
         axisValues[cfg.axisT] = joy2byte(0, cfg.axisT)   # Dummy T
         axisValues[cfg.axisZ] = joy2byte(1, cfg.axisZ)   # Dummy Z, always full throttle.
-
     elif len(myJoy.axes) == 3:   # Non-twisty joystick
         axisValues[cfg.axisT] = joy2byte(0, cfg.axisT)   # Dummy T
         axisValues[cfg.axisZ] = joy2byte(myJoy.axes[2], cfg.axisZ)   # Z
