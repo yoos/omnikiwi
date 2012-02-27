@@ -16,7 +16,7 @@ int main(void) {
     init();   // For Arduino.
 
     // Begin Arduino services.
-    Wire.begin();
+    //Wire.begin();
 
     Serial.begin(BAUDRATE);
 

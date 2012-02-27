@@ -83,6 +83,11 @@ void Pilot::fly() {
             transSpeed = 1.6 * sqrt(pow(joy.axes[SX]/125, 2) + pow(joy.axes[SY]/125, 2)) * joy.axes[SZ] / 250;
         }
 
+        rotSpeed *= (float) joy.axes[SZ]/250;
+        transSpeed *= (float) joy.axes[SZ]/250;
+
+        calculate_pwm_outputs(rotSpeed, transDir, transSpeed);
+
         okayToFly = false;
     }
     else {
