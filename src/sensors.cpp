@@ -10,10 +10,6 @@ Sensors::Sensors() {
         pinMode(anodePins[i], OUTPUT);
         pinMode(cathodePins[i], OUTPUT);
     }
-
-    // DEPRECATED LED SENSOR CODE
-    // Disable all pullup resistors.
-    //_SFR_IO8(0x35) |= 0x10;
 }
 
 /*! Charge LED and take first analog reading.
@@ -39,6 +35,8 @@ void Sensors::readLED(int ledNum) {
     // Take second analog reading from cathode pin and calculate voltage drop
     // between first and second readings.
     ledReadings[ledNum] = chargeReadings[ledNum] - analogRead(ledNum);
+
+    // Maybe try taking multiple readings?
 
     // Forward bias LED.
     pinMode(cathodePins[ledNum], OUTPUT);

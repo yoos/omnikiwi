@@ -49,13 +49,15 @@ int main(void) {
             // ================================================================
             for (int i=0; i<NUM_OF_LEDS; i++) {
                 if (loopCount % SENSOR_LOOP_INTERVAL == i) {
-                    // Read requested LED.
-                    sensors.readLED(i);
-
                     // Charge up the LED two pins down the list since a delay
                     // of 16 ms seems to work well while our master loop time
-                    // is 8 ms.
+                    // is 8 ms. Do this before readLED() to reduce noise! TODO:
+                    // Figure out why doing this before readLED() makes the
+                    // readings less noisy.
                     sensors.chargeLED((i+2) % NUM_OF_LEDS);
+
+                    // Read requested LED.
+                    sensors.readLED(i);
                 }
             }
 
