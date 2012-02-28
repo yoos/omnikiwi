@@ -54,11 +54,11 @@ void sendTelemetry(uint64_t nextRuntime) {
             sp("0");
         }
     }
-    sp(")  ");
+    sp(" )  ");
 
     // Report loop time.
     sp("dt: ");
-    spln((int) ((micros() - (nextRuntime - MASTER_DT))/1000));
+    spln((float) (micros() - (nextRuntime - MASTER_DT))/1000);
 }
 
 #endif // TELEMETRY_H
