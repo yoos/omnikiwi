@@ -7,7 +7,8 @@
         <param name="deadzone" value="0" />
     </node>
 
-    <node name="kiwi_tx" pkg="omnikiwi" type="groundstation.py" output="screen" />
+    <node name="kiwi_tx" pkg="omnikiwi" type="groundstation.py" />
+    <node name="kiwi_rx" pkg="omnikiwi" type="serialmon.py" output="screen" />
 
 </launch>
 <!-- %EndTag(FULL)%-->
