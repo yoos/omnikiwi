@@ -130,7 +130,12 @@ class telemetryThread(threading.Thread):
                     # =========================================================
                     #print fields
                     #print [dcm, fields[-1]]
-                    print [int(fields[0].encode('hex'), 16), motorVal, pidData, fields[-1]]
+                    print [int(fields[0].encode('hex'), 16)]
+                    print motorVal
+                    print ledReadings
+                    print fields[-1]
+                    print "\n--\n"
+
                     pub.publish(Telemetry(ledReadings[0],
                                           ledReadings[1],
                                           ledReadings[2],
