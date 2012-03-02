@@ -48,7 +48,7 @@ struct PIDdata {
 // ============================================================================
 // SERIAL IN
 // ============================================================================
-#define BAUDRATE 57600
+#define BAUDRATE  57600
 #define SERHEAD     255   // Serial header byte. Pilot interprets the four bytes following this header byte as motor commands.
 #define PACKETSIZE 6     // Each packet contains (excluding header) X, Y, Twist, Z, and two bytes for button values.
 #define INPUT_MIN  0     // Minimum integer input value from joystick.
@@ -63,13 +63,15 @@ struct PIDdata {
 // ============================================================================
 // SERIAL OUT
 // ============================================================================
+#define SEND_MOVE_COUNTER
 #define SEND_TARGET_ROTATION
-#define SEND_MOTOR_VALUES
+//#define SEND_MOTOR_VALUES
 #define SEND_SENSOR_READINGS
-#define SEND_DCM
-#define SEND_PID
+//#define SEND_DCM
+//#define SEND_PID
+//#define SEND_DIR
 
-#define DCM_SER_TAG 0xfb
+#define SEN_SER_TAG 0xfb
 #define ROT_SER_TAG 0xfc
 #define MOT_SER_TAG 0xfd
 #define PID_SER_TAG 0xfe
@@ -109,10 +111,10 @@ struct PIDdata {
 #ifdef COV019
 uint16_t ledZero[] = {260, 0, 0, 0, 0, 0};
 
-#define MAZE_THRESHOLD_4CM 590
-#define MAZE_THRESHOLD_6CM 530
-#define MAZE_THRESHOLD_8CM 490
-#define MAZE_THRESHOLD_10CM 450
+#define MAZE_THRESHOLD_4CM 450
+#define MAZE_THRESHOLD_6CM 400
+#define MAZE_THRESHOLD_8CM 300
+#define MAZE_THRESHOLD_10CM 250
 #endif // COV019
 
 #ifdef KELLEY
