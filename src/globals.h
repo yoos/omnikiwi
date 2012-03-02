@@ -81,7 +81,7 @@ struct PIDdata {
 // Software configuration: any parameter that is purely code-related or is
 // relatively frequently changed.
 // ============================================================================
-#define MASTER_DT            8000   // 8000 us interval = 125 Hz master loop.
+#define MASTER_DT            8320   // 8000 us interval = 125 Hz master loop.
 #define CONTROL_LOOP_INTERVAL   2   // 2x master = 62.5 Hz. NOTE: This frequency should be HIGHER than comm.py's dataSend frequency!
 #define SENSOR_LOOP_INTERVAL    6   // 1/6 master = 20.83 Hz.
 #define TELEMETRY_LOOP_INTERVAL 4   // 1/4 master = 31.25 Hz.
