@@ -22,8 +22,13 @@ import kiwiconfig as cfg   # Import config.
 # Telemetry data
 # =============================================================================
 
-# Initial DCM values.
-ledReadings = [0.0] * 6
+# Initial sensor readings.
+ledRaw   = [0.0] * 6
+ledFiltered   = [0.0] * 6
+ledFilteredLast   = [0.0] * 6
+ledVar        = [100.0] * 6
+ledUpdateSig  = 5.0
+ledPredictSig = 7.0
 
 # Target rotation values
 targetRot = [0.0] * 3
@@ -35,12 +40,24 @@ motorVal = [0.0] * 3
 pidData = [0.0] * 3
 
 
+# Kalman filter
+def update(mean1, var1, mean2, var2):
+    new_mean = (var2 * mean1 + var1 * mean2) / (var1 + var2)
+    new_var = 1/(1/var1 + 1/var2)
+    return [new_mean, new_var]
+
+def predict(mean1, var1, mean2, var2):
+    new_mean = mean1 + mean2
+    new_var = var1 + var2
+    return [new_mean, new_var]
+
+
 class telemetryThread(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.running = True
     def run(self):
-        global ledReadings, targetRot, motorVal, pidData
+        global ledRaw, targetRot, motorVal, pidData
         sensorDataIndex = 0       # Do I see IMU data?
         rotationDataIndex = 0       # Do I see rotation data?
         motorDataIndex = 0     # Do I see motor data?
@@ -88,7 +105,9 @@ class telemetryThread(threading.Thread):
                     if sensorDataIndex:
                         try:
                             for i in range(6):
-                                ledReadings[i] = float(int(fields[sensorDataIndex][i+1:i+2].encode('hex'), 16)*1024.0)/250.0
+                                ledRaw[i] = float(int(fields[sensorDataIndex][i+1:i+2].encode('hex'), 16)*1024.0)/250.0
+                                [ledFiltered[i], ledVar[i]] = update(ledFiltered[i], ledVar[i], ledRaw[i], ledUpdateSig)
+                                [ledFiltered[i], ledVar[i]] = predict(ledFiltered[i], ledVar[i], 0.0, ledPredictSig)
                         except Exception, e:
                             print "SEN:", str(e)
 
@@ -132,16 +151,24 @@ class telemetryThread(threading.Thread):
                     #print [dcm, fields[-1]]
                     print "Move counter:", int(fields[0].encode('hex'), 16)
                     print "Motors:      ", motorVal
-                    print "LED readings:", ledReadings
+                    print "LED raw:     ", ledRaw
+                    print "LED filtered:", ledFiltered
+                    print "LED variance:", ledVar
                     print "Loop time:   ", fields[-1]
                     print "\n--\n"
 
-                    pub.publish(Telemetry(ledReadings[0],
-                                          ledReadings[1],
-                                          ledReadings[2],
-                                          ledReadings[3],
-                                          ledReadings[4],
-                                          ledReadings[5],
+                    pub.publish(Telemetry(ledRaw[0],
+                                          ledRaw[1],
+                                          ledRaw[2],
+                                          ledRaw[3],
+                                          ledRaw[4],
+                                          ledRaw[5],
+                                          ledFiltered[0],
+                                          ledFiltered[1],
+                                          ledFiltered[2],
+                                          ledFiltered[3],
+                                          ledFiltered[4],
+                                          ledFiltered[5],
                                           motorVal[0],
                                           motorVal[1],
                                           motorVal[2],
