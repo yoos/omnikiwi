@@ -17,9 +17,9 @@ MazeSolver::MazeSolver() {
 }
 
 void MazeSolver::run() {
-    mazeSolver();
+    //mazeSolver();
     //lightFollower();
-    //wallFollower();
+    wallFollower();
 }
 
 void MazeSolver::mazeSolver() {
@@ -69,19 +69,24 @@ void MazeSolver::lightFollower() {
 }
 
 void MazeSolver::wallFollower() {
-    transDir = PI/2;
-    transSpeed = MAZE_TRANS_SPEED;
+    if (ledReadings[1] > MAZE_THRESHOLD_NOWALL &&
+        ledReadings[2] > MAZE_THRESHOLD_NOWALL) {   // Wall in front.
 
-    if (ledReadings[0] > 590 && ledReadings[1] < 600) {
-        rotSpeed = 2;
+        if (ledReadings[0] < MAZE_THRESHOLD_NOWALL) {   // No wall to right?
+            runUnitAction = &rotateRight;
+        }
+        else if (ledReadings[3] < MAZE_THRESHOLD_NOWALL) {   // No wall to left?
+            runUnitAction = &rotateLeft;
+        }
     }
-    else if (ledReadings[0] < 490 && ledReadings[1] < 600) {
-        rotSpeed = -2;
+    else if (ledReadings[1] < MAZE_THRESHOLD_NOWALL &&
+             ledReadings[2] < MAZE_THRESHOLD_NOWALL) {   // No wall in front.
+        if (ledReadings[0] > ledReadings[3]) {
+            runUnitAction = &veerLeft;
+        }
+        else if (ledReadings[0] < ledReadings[3]) {
+            runUnitAction = &veerRight;
+        }
     }
-    else if (ledReadings[1] < 600) {
-        rotSpeed = 0;
-    }
-
-    calculate_pwm_outputs(rotSpeed, transDir, transSpeed);
 }
 
