@@ -81,7 +81,9 @@ struct PIDdata {
 // Software configuration: any parameter that is purely code-related or is
 // relatively frequently changed.
 // ============================================================================
-#define MASTER_DT            8320   // 8000 us interval = 125 Hz master loop.
+// TODO: might want to consider changing MASTER_DT back to 8000 or changing the
+// sensor lead count from 2 to 3.
+#define MASTER_DT            5200   // 8000 us interval = 125 Hz master loop.
 #define CONTROL_LOOP_INTERVAL   2   // 2x master = 62.5 Hz. NOTE: This frequency should be HIGHER than comm.py's dataSend frequency!
 #define SENSOR_LOOP_INTERVAL    6   // 1/6 master = 20.83 Hz.
 #define TELEMETRY_LOOP_INTERVAL 4   // 1/4 master = 31.25 Hz.
@@ -110,6 +112,7 @@ struct PIDdata {
 
 #ifdef COV019
 uint16_t ledZero[] = {260, 0, 0, 0, 0, 0};
+#define LED_MAX_SANE_READING 500
 
 #define MAZE_THRESHOLD_4CM 450
 #define MAZE_THRESHOLD_6CM 400
@@ -119,6 +122,7 @@ uint16_t ledZero[] = {260, 0, 0, 0, 0, 0};
 
 #ifdef KELLEY
 uint16_t ledZero[] = {0, 0, 0, 0, 0, 0};
+#define LED_MAX_SANE_READING 500
 
 #define MAZE_FORWARD_THRES 600
 #define MAZE_RIGHT_THRES_LOW  400
