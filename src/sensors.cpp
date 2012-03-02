@@ -34,9 +34,8 @@ void Sensors::chargeLED(int ledNum) {
 void Sensors::readLED(int ledNum) {
     // Take second analog reading from cathode pin and calculate voltage drop
     // between first and second readings.
-    ledReadings[ledNum] = chargeReadings[ledNum] - analogRead(ledNum);
-
-    // Maybe try taking multiple readings?
+    uint16_t tmp = chargeReadings[ledNum] - analogRead(ledNum);
+    ledReadings[ledNum] = (tmp < LED_MAX_SANE_READING) ? tmp : ledReadings[ledNum];
 
     // Forward bias LED.
     pinMode(cathodePins[ledNum], OUTPUT);
