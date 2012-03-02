@@ -2,3 +2,6 @@
 applet
 *.pyc
 four-motor_driver/*.ps
+msg_gen
+build
+src/omnikiwi
