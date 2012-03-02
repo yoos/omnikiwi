@@ -76,14 +76,14 @@ int main(void) {
                 digitalWrite(MR_DIG, digOut[MOTOR_R]);
                 digitalWrite(ML_DIG, digOut[MOTOR_L]);
             }
+            if (loopCount % CONTROL_LOOP_INTERVAL == 1) {
+                pilot.listen();
+            }
 
             // ================================================================
             // Telemetry loop
             // ================================================================
             if (loopCount % TELEMETRY_LOOP_INTERVAL == 0) {
-                pilot.listen();
-            }
-            if (loopCount % TELEMETRY_LOOP_INTERVAL == 1) {
                 sendTelemetry(nextRuntime);
             }
 
