@@ -12,8 +12,10 @@
 
 void sendTelemetry(uint64_t nextRuntime) {
     // Send move number.
-    sp(moveCounter);
-    sp("  ");
+    #ifdef SEND_MOVE_COUNTER
+    sw(moveCounter);
+    sw(FIELD_SER_TAG); sw(FIELD_SER_TAG);
+    #endif // SEND_MOVE_COUNTER
 
     // ========================================================================
     // Report motor values.
@@ -31,20 +33,24 @@ void sendTelemetry(uint64_t nextRuntime) {
         sp(" ");
     }
     sp(")  ");
+    sw(FIELD_SER_TAG); sw(FIELD_SER_TAG);
     #endif // SEND_MOTOR_VALUES
 
     // ========================================================================
     // Read LED distance sensors.
     // ========================================================================
     #ifdef SEND_SENSOR_READINGS
-    sp("D( ");
+    sw(SEN_SER_TAG);
     for (int i=0; i<6; i++) {
-        sp(ledReadings[i]);
-        sp(" ");
+        sw((ledReadings[i]+1)*250.0/1024.0);
     }
-    sp(")  ");
+    sw(FIELD_SER_TAG); sw(FIELD_SER_TAG);
     #endif // SEND_SENSOR_READINGS
 
+    // ========================================================================
+    // Send direction?
+    // ========================================================================
+    #ifdef SEND_DIR
     sp("Dir( ");
     for (int i=0; i<6; i++) {
         if (ledReadings[i] > MAZE_THRESHOLD_6CM) {
@@ -55,10 +61,13 @@ void sendTelemetry(uint64_t nextRuntime) {
         }
     }
     sp(" )  ");
+    sw(FIELD_SER_TAG); sw(FIELD_SER_TAG);
+    #endif // SEND_DIR
 
     // Report loop time.
-    sp("dt: ");
-    spln((float) (micros() - (nextRuntime - MASTER_DT))/1000);
+    sp((float) (micros() - (nextRuntime - MASTER_DT))/1000);
+
+    sw(0xde); sw(0xad); sw(0xbe); sw(0xef);
 }
 
 #endif // TELEMETRY_H

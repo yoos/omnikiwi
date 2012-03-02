@@ -18,7 +18,7 @@ dogBone = chr(254)
 # RX
 newlineSerTag  = '\xde\xad\xbe\xef'
 fieldSerTag    = '\xff\xff'
-dcmSerTag      = '\xfb'
+sensorSerTag   = '\xfb'
 rotationSerTag = '\xfc'
 motorSerTag    = '\xfd'
 pidSerTag      = '\xfe'
