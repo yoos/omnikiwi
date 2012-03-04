@@ -78,9 +78,9 @@ void Pilot::fly() {
         process_joystick_buttons();
 
         if (joy.axes[SZ] > 0) {
-            rotSpeed = 18 * joy.axes[ST] / 125;
+            rotSpeed = 20 * joy.axes[ST] / 125. * joy.axes[SZ] / 250.;
             transDir = atan2(joy.axes[SY], joy.axes[SX]);
-            transSpeed = 1.6 * sqrt(pow(joy.axes[SX]/125, 2) + pow(joy.axes[SY]/125, 2)) * joy.axes[SZ] / 250;
+            transSpeed = 2.5 * sqrt(pow(joy.axes[SX]/125, 2) + pow(joy.axes[SY]/125, 2)) * joy.axes[SZ] / 250.;
         }
 
         rotSpeed *= (float) joy.axes[SZ]/250;

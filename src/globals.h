@@ -162,7 +162,7 @@ uint16_t ledZero[] = {0, 0, 0, 0, 0, 0};
 // ============================================================================
 #define ROBOT_RADIUS 0.071   // Robot wheelbase radius in meters.
 #define WHEEL_RADIUS 0.0254   // Effective wheel radius in meters.
-#define MAX_MOTOR_SPEED 36.652   // Maximum motor speed in rad/s (350 RPM at 6V). TODO: This varies based on battery voltage. Either make this dynamic or implement rotation sensing using a gyro or encoders.
+#define MAX_MOTOR_SPEED 73.304   // Maximum motor speed in rad/s (350 RPM at 6V == 700 RPM at 12 V). TODO: This varies based on battery voltage. Either make this dynamic or implement rotation sensing using a gyro or encoders.
 #define NUM_OF_LEDS 6   // Number of LED sensors.
 
 // Digital pin assignments
