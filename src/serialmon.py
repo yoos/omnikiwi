@@ -10,6 +10,7 @@ from time import sleep
 import threading
 from threading import Timer, Thread
 from signal import signal, SIGINT
+from math import pi
 
 # ROS stuff
 import roslib; roslib.load_manifest("tricopter")
@@ -24,11 +25,12 @@ import kiwiconfig as cfg   # Import config.
 
 # Initial sensor readings.
 ledRaw   = [0.0] * 6
+ledRawLast   = [0.0] * 6
 ledFiltered   = [0.0] * 6
 ledFilteredLast   = [0.0] * 6
 ledVar        = [100.0] * 6
-ledUpdateSig  = 5.0
-ledPredictSig = 7.0
+ledUpdateSig  = 150.
+ledPredictSig = 0.2
 
 # Target rotation values
 targetRot = [0.0] * 3
@@ -50,6 +52,12 @@ def predict(mean1, var1, mean2, var2):
     new_mean = mean1 + mean2
     new_var = var1 + var2
     return [new_mean, new_var]
+
+# Low-pass filter
+def lpf(currentVal, lastVal, dt, freq):
+    rc = 1 / (2 * pi * freq)
+    output = lastVal + (dt / (rc + dt)) * (currentVal - lastVal)
+    return output
 
 
 class telemetryThread(threading.Thread):
@@ -108,6 +116,8 @@ class telemetryThread(threading.Thread):
                                 ledRaw[i] = float(int(fields[sensorDataIndex][i+1:i+2].encode('hex'), 16)*1024.0)/250.0
                                 [ledFiltered[i], ledVar[i]] = update(ledFiltered[i], ledVar[i], ledRaw[i], ledUpdateSig)
                                 [ledFiltered[i], ledVar[i]] = predict(ledFiltered[i], ledVar[i], 0.0, ledPredictSig)
+
+
                         except Exception, e:
                             print "SEN:", str(e)
 
