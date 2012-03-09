@@ -10,8 +10,7 @@ MazeSolver::MazeSolver() {
     transDir = 0;
     transSpeed = 0;
 
-    unitMoveStartTime = 0;
-    unitMoveEndTime = 0;
+    runUnitAction = &stop;
 
     moveCounter = 0;
 }
@@ -69,24 +68,29 @@ void MazeSolver::lightFollower() {
 }
 
 void MazeSolver::wallFollower() {
-    if (ledReadings[1] > MAZE_THRESHOLD_NOWALL &&
-        ledReadings[2] > MAZE_THRESHOLD_NOWALL) {   // Wall in front.
+    if (micros() > unitMoveEndTime) {
+        if (ledReadings[1] > MAZE_THRESHOLD_NOWALL &&
+            ledReadings[2] > MAZE_THRESHOLD_NOWALL) {   // Wall in front.
 
-        if (ledReadings[0] < MAZE_THRESHOLD_NOWALL) {   // No wall to right?
-            runUnitAction = &rotateRight;
+            if (ledReadings[0] < MAZE_THRESHOLD_NOWALL) {   // No wall to right?
+                runUnitAction = &rotateRight;
+            }
+            else if (ledReadings[3] < MAZE_THRESHOLD_NOWALL) {   // No wall to left?
+                runUnitAction = &rotateLeft;
+            }
         }
-        else if (ledReadings[3] < MAZE_THRESHOLD_NOWALL) {   // No wall to left?
-            runUnitAction = &rotateLeft;
+        else if (ledReadings[1] < MAZE_THRESHOLD_NOWALL &&
+                 ledReadings[2] < MAZE_THRESHOLD_NOWALL) {   // No wall in front.
+            if (ledReadings[0] > ledReadings[3]) {
+                runUnitAction = &veerLeft;
+            }
+            else if (ledReadings[0] < ledReadings[3]) {
+                runUnitAction = &veerRight;
+            }
         }
-    }
-    else if (ledReadings[1] < MAZE_THRESHOLD_NOWALL &&
-             ledReadings[2] < MAZE_THRESHOLD_NOWALL) {   // No wall in front.
-        if (ledReadings[0] > ledReadings[3]) {
-            runUnitAction = &veerLeft;
-        }
-        else if (ledReadings[0] < ledReadings[3]) {
-            runUnitAction = &veerRight;
-        }
+
+        runUnitAction();   // Unit contoller function pointer.
+        calculate_pwm_outputs(rotSpeed, transDir, transSpeed);
     }
 }
 
