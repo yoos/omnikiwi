@@ -99,7 +99,7 @@ struct PIDdata {
 #define MOTOR_L 2   // Left motor array index.
 
 // Maze solver
-#define COV019
+#define COV022
 //#define KELLEY
 
 #define UNIT_DISTANCE 0.3   // "Unit" distance for maze solver.
@@ -110,15 +110,66 @@ struct PIDdata {
 #define MAZE_TURN_SPEED  2.0
 #define MAZE_ROT_SPEED   4.0
 
-#ifdef COV019
-uint16_t ledZero[] = {260, 0, 0, 0, 0, 0};
+#ifdef COV022
+
+#define LED_0_THRESHOLD_2CM   403
+#define LED_0_THRESHOLD_4CM   400
+#define LED_0_THRESHOLD_6CM   375
+#define LED_0_THRESHOLD_8CM   366
+#define LED_0_THRESHOLD_10CM  355
+#define LED_0_THRESHOLD_INFTY 262
+
+#define LED_1_THRESHOLD_2CM   0
+#define LED_1_THRESHOLD_4CM   0
+#define LED_1_THRESHOLD_6CM   0
+#define LED_1_THRESHOLD_8CM   0
+#define LED_1_THRESHOLD_10CM  0
+#define LED_1_THRESHOLD_INFTY 0
+
+#define LED_2_THRESHOLD_2CM   413
+#define LED_2_THRESHOLD_4CM   412
+#define LED_2_THRESHOLD_6CM   410
+#define LED_2_THRESHOLD_8CM   397
+#define LED_2_THRESHOLD_10CM  380
+#define LED_2_THRESHOLD_INFTY 220
+
+#define LED_3_THRESHOLD_2CM   465
+#define LED_3_THRESHOLD_4CM   462
+#define LED_3_THRESHOLD_6CM   438
+#define LED_3_THRESHOLD_8CM   411
+#define LED_3_THRESHOLD_10CM  399
+#define LED_3_THRESHOLD_INFTY 325
+
+#define LED_4_THRESHOLD_2CM   497
+#define LED_4_THRESHOLD_4CM   491
+#define LED_4_THRESHOLD_6CM   430
+#define LED_4_THRESHOLD_8CM   397
+#define LED_4_THRESHOLD_10CM  386
+#define LED_4_THRESHOLD_INFTY 305
+
+#define LED_5_THRESHOLD_2CM   0
+#define LED_5_THRESHOLD_4CM   0
+#define LED_5_THRESHOLD_6CM   0
+#define LED_5_THRESHOLD_8CM   0
+#define LED_5_THRESHOLD_10CM  0
+#define LED_5_THRESHOLD_INFTY 0
+
 #define LED_MAX_SANE_READING 500
+
+struct ledThresholdsData {
+    uint16_t cm2;
+    uint16_t cm4;
+    uint16_t cm6;
+    uint16_t cm8;
+    uint16_t cm10;
+    uint16_t infty;
+} ledThresholds[6];
 
 #define MAZE_THRESHOLD_4CM 450
 #define MAZE_THRESHOLD_6CM 400
 #define MAZE_THRESHOLD_8CM 300
 #define MAZE_THRESHOLD_10CM 250
-#endif // COV019
+#endif // COV022
 
 #ifdef KELLEY
 uint16_t ledZero[] = {0, 0, 0, 0, 0, 0};

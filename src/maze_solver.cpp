@@ -69,22 +69,19 @@ void MazeSolver::lightFollower() {
 
 void MazeSolver::wallFollower() {
     if (micros() > unitMoveEndTime) {
-        if (ledReadings[1] > MAZE_THRESHOLD_NOWALL &&
-            ledReadings[2] > MAZE_THRESHOLD_NOWALL) {   // Wall in front.
-
-            if (ledReadings[0] < MAZE_THRESHOLD_NOWALL) {   // No wall to right?
+        if (ledReadings[2] > LED_2_THRESHOLD_6CM) {   // Wall in front.
+            if (ledReadings[0] < LED_0_THRESHOLD_10CM) {   // No wall to right?
                 runUnitAction = &rotateRight;
             }
-            else if (ledReadings[3] < MAZE_THRESHOLD_NOWALL) {   // No wall to left?
+            else if (ledReadings[3] < LED_3_THRESHOLD_10CM) {   // No wall to left?
                 runUnitAction = &rotateLeft;
             }
         }
-        else if (ledReadings[1] < MAZE_THRESHOLD_NOWALL &&
-                 ledReadings[2] < MAZE_THRESHOLD_NOWALL) {   // No wall in front.
-            if (ledReadings[0] > ledReadings[3]) {
+        else if (ledReadings[2] < LED_2_THRESHOLD_6CM) {   // No wall in front.
+            if (ledReadings[0] > LED_0_THRESHOLD_4CM) {
                 runUnitAction = &veerLeft;
             }
-            else if (ledReadings[0] < ledReadings[3]) {
+            else if (ledReadings[0] < LED_0_THRESHOLD_8CM) {
                 runUnitAction = &veerRight;
             }
         }
