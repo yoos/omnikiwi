@@ -38,7 +38,7 @@ void veerRight() {
     unitMoveEndTime = unitMoveStartTime + 1000;
 
     rotSpeed = -MAZE_VEER_SPEED;
-    transDir = PI/2;
+    transDir = PI/2 * 0.95;
     transSpeed = MAZE_TRANS_SPEED;
 }
 
@@ -47,7 +47,7 @@ void veerLeft() {
     unitMoveEndTime = unitMoveStartTime + 1000;
 
     rotSpeed = MAZE_VEER_SPEED;
-    transDir = PI/2;
+    transDir = PI/2 * 1.05;
     transSpeed = MAZE_TRANS_SPEED;
 }
 
