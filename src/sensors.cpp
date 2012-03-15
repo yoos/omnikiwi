@@ -9,6 +9,18 @@ Sensors::Sensors() {
     for (int i=0; i<NUM_OF_LEDS; i++) {
         pinMode(anodePins[i], OUTPUT);
         pinMode(cathodePins[i], OUTPUT);
+
+        #ifdef SENSORS_LPF_DEPTH
+        lpfIndex[i] = 0;
+        for (int j=0; j<SENSORS_LPF_DEPTH; j++) {
+            lpfVal[i][j] = 0;
+        }
+        #endif // SENSORS_LPF_DEPTH
+
+        chargeReadings[i] = 0;
+        ledReadings[i] = 0;
+        ledFiltered[i] = 0;
+        ledVar[i] = 100.;
     }
 }
 
@@ -33,9 +45,24 @@ void Sensors::chargeLED(int ledNum) {
  */
 void Sensors::readLED(int ledNum) {
     // Take second analog reading from cathode pin and calculate voltage drop
-    // between first and second readings.
+    // between first and second readings. Sometimes, this drop is insanely big
+    // -- ignore those.
     uint16_t tmp = chargeReadings[ledNum] - analogRead(ledNum);
     ledReadings[ledNum] = (tmp < LED_MAX_SANE_READING) ? tmp : ledReadings[ledNum];
+
+    // Low-pass filter.
+    #ifdef SENSORS_LPF_DEPTH
+    lpfVal[ledNum][lpfIndex[ledNum]] = ((float) ledReadings[ledNum]) / SENSORS_LPF_DEPTH;
+
+    ledFiltered[ledNum] = 0;
+    for (int i=0; i<SENSORS_LPF_DEPTH; i++) {
+        ledFiltered[ledNum] += lpfVal[ledNum][i];
+    }
+    lpfIndex[ledNum] = (lpfIndex[ledNum] + 1) % SENSORS_LPF_DEPTH;   // Increment index by 1 and loop back from SENSORS_LPF_DEPTH.
+
+    #else
+    ledFiltered[ledNum] = ledReadings[ledNum];
+    #endif // SENSORS_LPF_DEPTH
 
     // Forward bias LED.
     pinMode(cathodePins[ledNum], OUTPUT);
