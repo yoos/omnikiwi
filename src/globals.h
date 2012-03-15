@@ -102,13 +102,14 @@ struct PIDdata {
 #define COV022
 //#define KELLEY
 
-#define UNIT_DISTANCE 0.3   // "Unit" distance for maze solver.
-#define UNIT_ROT (PI/2)     // "Unit" rotation for maze solver.
+#define UNIT_DISTANCE 0.30   // "Unit" distance for maze solver.
+#define UNIT_ROT (PI/2) * 1.15     // "Unit" rotation for maze solver.
 
-#define MAZE_TRANS_SPEED 0.2
-#define MAZE_VEER_SPEED  0.1
-#define MAZE_TURN_SPEED  2.0
-#define MAZE_ROT_SPEED   4.0
+#define MAZE_TRANS_SPEED       0.6
+#define MAZE_VEER_SPEED        0.1
+#define MAZE_TURN_TRANS_SPEED  0.3
+#define MAZE_TURN_ROT_SPEED    5.0
+#define MAZE_ROT_SPEED         4.0
 
 #ifdef COV022
 
@@ -117,6 +118,7 @@ struct PIDdata {
 #define LED_0_THRESHOLD_6CM   375
 #define LED_0_THRESHOLD_8CM   366
 #define LED_0_THRESHOLD_10CM  355
+#define LED_0_THRESHOLD_15CM  320   // THIS IS A GUESS!
 #define LED_0_THRESHOLD_INFTY 262
 
 #define LED_1_THRESHOLD_2CM   0
@@ -131,6 +133,7 @@ struct PIDdata {
 #define LED_2_THRESHOLD_6CM   410
 #define LED_2_THRESHOLD_8CM   397
 #define LED_2_THRESHOLD_10CM  380
+#define LED_2_THRESHOLD_15CM  350   // THIS IS A GUESS!
 #define LED_2_THRESHOLD_INFTY 220
 
 #define LED_3_THRESHOLD_2CM   465

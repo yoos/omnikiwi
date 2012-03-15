@@ -65,8 +65,8 @@ int main(void) {
             // Control loop
             // ================================================================
             if (loopCount % CONTROL_LOOP_INTERVAL == 0) {
-                //mazer.run();
-                pilot.fly();
+                mazer.run();
+                //pilot.fly();
 
                 analogWrite(MT_PWM, analogOut[MOTOR_T]);
                 analogWrite(MR_PWM, analogOut[MOTOR_R]);

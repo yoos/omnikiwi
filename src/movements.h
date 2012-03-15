@@ -10,6 +10,7 @@ uint64_t unitMoveStartTime;
 uint64_t unitMoveEndTime;
 
 void (*runUnitAction) ();
+void (*nextUnitAction) ();
 
 void transUnit();
 void transForward();

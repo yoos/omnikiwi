@@ -59,20 +59,20 @@ void veerLeft() {
 // ============================================================================
 void turnRight() {
     unitMoveStartTime = micros();
-    unitMoveEndTime = unitMoveStartTime + 1000000;   // TODO: need to test.
+    unitMoveEndTime = unitMoveStartTime + (PI/2 * 1.2) / MAZE_TURN_ROT_SPEED * 1000000;
 
-    rotSpeed = -MAZE_TURN_SPEED;
+    rotSpeed = -MAZE_TURN_ROT_SPEED;
     transDir = PI/2;
-    transSpeed = MAZE_TRANS_SPEED;
+    transSpeed = MAZE_TURN_TRANS_SPEED;
 }
 
 void turnLeft() {
     unitMoveStartTime = micros();
-    unitMoveEndTime = unitMoveStartTime + 1000000;   // TODO: need to test.
+    unitMoveEndTime = unitMoveStartTime + (PI/2) / MAZE_TURN_ROT_SPEED * 1000000;
 
-    rotSpeed = MAZE_TURN_SPEED;
+    rotSpeed = MAZE_TURN_ROT_SPEED;
     transDir = PI/2;
-    transSpeed = MAZE_TRANS_SPEED;
+    transSpeed = MAZE_TURN_TRANS_SPEED;
 }
 
 // ============================================================================

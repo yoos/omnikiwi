@@ -69,24 +69,37 @@ void MazeSolver::lightFollower() {
 
 void MazeSolver::wallFollower() {
     if (micros() > unitMoveEndTime) {
-        if (ledReadings[2] > LED_2_THRESHOLD_6CM) {   // Wall in front.
-            if (ledReadings[0] < LED_0_THRESHOLD_10CM) {   // No wall to right?
-                runUnitAction = &rotateRight;
+        if (nextUnitAction == NULL) {
+            if (ledReadings[0] < LED_0_THRESHOLD_6CM) {   // No wall to right
+                runUnitAction = &turnRight;
+                nextUnitAction = &transUnit;
             }
-            else if (ledReadings[3] < LED_3_THRESHOLD_10CM) {   // No wall to left?
-                runUnitAction = &rotateLeft;
+            else if (ledReadings[2] > LED_2_THRESHOLD_10CM) {   // Wall in front.
+                if (ledReadings[3] < LED_3_THRESHOLD_6CM) {   // No wall to left?
+                    runUnitAction = &rotateLeft;
+                }
+                else {
+                    runUnitAction = &rotateBack;
+                }
+            }
+            else if (ledReadings[2] < LED_2_THRESHOLD_10CM) {   // No wall in front.
+                //if (ledReadings[0] > LED_0_THRESHOLD_2CM) {
+                //    runUnitAction = &veerLeft;
+                //}
+                //else if (ledReadings[0] < LED_0_THRESHOLD_6CM) {
+                //    runUnitAction = &veerRight;
+                //}
+                //else {
+                    runUnitAction = &transForward;
+                //}
             }
         }
-        else if (ledReadings[2] < LED_2_THRESHOLD_6CM) {   // No wall in front.
-            if (ledReadings[0] > LED_0_THRESHOLD_4CM) {
-                runUnitAction = &veerLeft;
-            }
-            else if (ledReadings[0] < LED_0_THRESHOLD_8CM) {
-                runUnitAction = &veerRight;
-            }
+        else {
+            runUnitAction = nextUnitAction;
+            nextUnitAction = NULL;
         }
 
-        runUnitAction();   // Unit contoller function pointer.
+        runUnitAction();   // Unit controller function pointer.
         calculate_pwm_outputs(rotSpeed, transDir, transSpeed);
     }
 }
