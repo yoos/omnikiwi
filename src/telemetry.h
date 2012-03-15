@@ -42,7 +42,7 @@ void sendTelemetry(uint64_t nextRuntime) {
     #ifdef SEND_SENSOR_READINGS
     sw(SEN_SER_TAG);
     for (int i=0; i<6; i++) {
-        sw((ledReadings[i]+1)*250.0/1024.0);
+        sw((ledFiltered[i]+1)*250.0/1024.0);
     }
     sw(FIELD_SER_TAG); sw(FIELD_SER_TAG);
     #endif // SEND_SENSOR_READINGS
@@ -53,7 +53,7 @@ void sendTelemetry(uint64_t nextRuntime) {
     #ifdef SEND_DIR
     sp("Dir( ");
     for (int i=0; i<6; i++) {
-        if (ledReadings[i] > MAZE_THRESHOLD_6CM) {
+        if (ledFiltered[i] > MAZE_THRESHOLD_6CM) {
             sp("1");
         }
         else {
