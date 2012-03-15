@@ -114,8 +114,8 @@ class telemetryThread(threading.Thread):
                         try:
                             for i in range(6):
                                 ledRaw[i] = float(int(fields[sensorDataIndex][i+1:i+2].encode('hex'), 16)*1024.0)/250.0
-                                [ledFiltered[i], ledVar[i]] = update(ledFiltered[i], ledVar[i], ledRaw[i], ledUpdateSig)
-                                [ledFiltered[i], ledVar[i]] = predict(ledFiltered[i], ledVar[i], 0.0, ledPredictSig)
+                                #[ledFiltered[i], ledVar[i]] = update(ledFiltered[i], ledVar[i], ledRaw[i], ledUpdateSig)
+                                #[ledFiltered[i], ledVar[i]] = predict(ledFiltered[i], ledVar[i], 0.0, ledPredictSig)
 
 
                         except Exception, e:
