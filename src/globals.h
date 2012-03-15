@@ -105,7 +105,7 @@ struct PIDdata {
 #define UNIT_DISTANCE 0.3   // "Unit" distance for maze solver.
 #define UNIT_ROT (PI/2)     // "Unit" rotation for maze solver.
 
-#define MAZE_TRANS_SPEED 1.0
+#define MAZE_TRANS_SPEED 0.2
 #define MAZE_VEER_SPEED  0.1
 #define MAZE_TURN_SPEED  2.0
 #define MAZE_ROT_SPEED   4.0
