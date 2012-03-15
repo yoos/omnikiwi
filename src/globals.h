@@ -20,7 +20,10 @@ float rotSpeed, transDir, transSpeed;
 
 uint16_t moveCounter;
 
-uint16_t chargeReadings[6], ledReadings[6];   // LED distance sensor readings.
+// LED distance sensor readings.
+uint16_t chargeReadings[6];
+uint16_t ledReadings[6];
+uint16_t ledFiltered[6];
 
 
 // ============================================================================
