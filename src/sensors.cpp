@@ -20,7 +20,6 @@ Sensors::Sensors() {
         chargeReadings[i] = 0;
         ledReadings[i] = 0;
         ledFiltered[i] = 0;
-        ledVar[i] = 100.;
     }
 }
 
