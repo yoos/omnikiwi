@@ -37,18 +37,18 @@ void veerRight() {
     unitMoveStartTime = micros();
     unitMoveEndTime = unitMoveStartTime + 1000;
 
-    rotSpeed = -MAZE_VEER_SPEED;
+    rotSpeed = -MAZE_VEER_ROT_SPEED;
     transDir = PI/2 * 0.95;
-    transSpeed = MAZE_TRANS_SPEED;
+    transSpeed = MAZE_VEER_TRANS_SPEED;
 }
 
 void veerLeft() {
     unitMoveStartTime = micros();
     unitMoveEndTime = unitMoveStartTime + 1000;
 
-    rotSpeed = MAZE_VEER_SPEED;
+    rotSpeed = MAZE_VEER_ROT_SPEED;
     transDir = PI/2 * 1.05;
-    transSpeed = MAZE_TRANS_SPEED;
+    transSpeed = MAZE_VEER_TRANS_SPEED;
 }
 
 // ============================================================================
@@ -59,7 +59,7 @@ void veerLeft() {
 // ============================================================================
 void turnRight() {
     unitMoveStartTime = micros();
-    unitMoveEndTime = unitMoveStartTime + (PI/2 * 1.2) / MAZE_TURN_ROT_SPEED * 1000000;
+    unitMoveEndTime = unitMoveStartTime + (PI/2 * 1.5) / MAZE_TURN_ROT_SPEED * 1000000;
 
     rotSpeed = -MAZE_TURN_ROT_SPEED;
     transDir = PI/2;

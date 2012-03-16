@@ -16,6 +16,15 @@ class MazeSolver {
     void lightFollower();
     void wallFollower();
 
+    bool okayToTurnRight;
+
+    // Current and target wall "statuses", i.e., whether or not there is a wall to the right, front, left, and back.
+    uint8_t currentWalls[4];
+    uint8_t targetWalls[4];
+    uint8_t lastWalls[4];
+
+    void updateWalls();
+
 public:
     MazeSolver();
     void run();

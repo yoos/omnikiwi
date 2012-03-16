@@ -8,7 +8,7 @@
 
 #include "globals.h"
 
-#define SENSORS_LPF_DEPTH 8   // Enable low-pass filter.
+#define SENSORS_LPF_DEPTH 5   // Enable low-pass filter.
 
 class Sensors {
     #ifdef SENSORS_LPF_DEPTH

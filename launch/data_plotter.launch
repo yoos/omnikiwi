@@ -6,6 +6,7 @@
           args = "--buffer=20
                   --period=20
                   --refresh_rate=20
-                  /telemetry/led0raw:led2raw:led3raw:led4raw" />
+                  /telemetry/led0raw:led2raw:led3raw:led4raw,
+                  /telemetry/led1raw:led5raw" />
 </launch>
 

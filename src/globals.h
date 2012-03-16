@@ -105,14 +105,15 @@ struct PIDdata {
 #define COV022
 //#define KELLEY
 
-#define UNIT_DISTANCE 0.30   // "Unit" distance for maze solver.
-#define UNIT_ROT (PI/2) * 1.15     // "Unit" rotation for maze solver.
+#define UNIT_DISTANCE 0.35   // "Unit" distance for maze solver.
+#define UNIT_ROT (PI/2) * 1.0     // "Unit" rotation for maze solver.
 
 #define MAZE_TRANS_SPEED       0.6
-#define MAZE_VEER_SPEED        0.1
-#define MAZE_TURN_TRANS_SPEED  0.3
-#define MAZE_TURN_ROT_SPEED    5.0
 #define MAZE_ROT_SPEED         4.0
+#define MAZE_VEER_TRANS_SPEED  0.6
+#define MAZE_VEER_ROT_SPEED    2.0
+#define MAZE_TURN_TRANS_SPEED  0.2
+#define MAZE_TURN_ROT_SPEED    4.0
 
 #ifdef COV022
 
@@ -170,7 +171,7 @@ struct PIDdata {
 #define LED_5_THRESHOLD_10CM  0
 #define LED_5_THRESHOLD_INFTY 0
 
-#define LED_MAX_SANE_READING 500
+#define LED_MAX_SANE_READING 700
 
 struct ledThresholdsData {
     uint16_t cm2;
@@ -181,10 +182,13 @@ struct ledThresholdsData {
     uint16_t infty;
 } ledThresholds[6];
 
-#define MAZE_THRESHOLD_4CM 450
-#define MAZE_THRESHOLD_6CM 400
-#define MAZE_THRESHOLD_8CM 300
-#define MAZE_THRESHOLD_10CM 250
+#define MAZE_THRESHOLD_RIGHT LED_0_THRESHOLD_25CM
+#define MAZE_THRESHOLD_FRONT LED_2_THRESHOLD_10CM
+#define MAZE_THRESHOLD_LEFT  LED_3_THRESHOLD_15CM
+#define MAZE_THRESHOLD_BACK  LED_4_THRESHOLD_15CM
+
+#define MAZE_THRESHOLD_RIGHT_AHEAD  390
+#define MAZE_THRESHOLD_RIGHT_BEHIND 420
 #endif // COV022
 
 #ifdef KELLEY
@@ -196,11 +200,6 @@ uint16_t ledZero[] = {0, 0, 0, 0, 0, 0};
 #define MAZE_RIGHT_THRES_HIGH 540
 #define MAZE_LEFT_THRES_NOWALL 300
 #endif // KELLEY
-
-#define MAZE_THRESHOLD_FORWARD    MAZE_THRESHOLD_6CM
-#define MAZE_THRESHOLD_RIGHT_HIGH MAZE_THRESHOLD_4CM
-#define MAZE_THRESHOLD_RIGHT_LOW  MAZE_THRESHOLD_6CM
-#define MAZE_THRESHOLD_NOWALL     MAZE_THRESHOLD_10CM
 
 
 // Sensors
