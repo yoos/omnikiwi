@@ -24,13 +24,13 @@ Pilot::Pilot() {
     // Initialize trim to 0.
     throttleTrim = 0;
 
-    PID[PID_ROT_X].P = PID[PID_ROT_Y].P = XY_P_GAIN;
-    PID[PID_ROT_X].I = PID[PID_ROT_Y].I = XY_I_GAIN;
-    PID[PID_ROT_X].D = PID[PID_ROT_Y].D = XY_D_GAIN;
+    //PID[PID_ROT_X].P = PID[PID_ROT_Y].P = XY_P_GAIN;
+    //PID[PID_ROT_X].I = PID[PID_ROT_Y].I = XY_I_GAIN;
+    //PID[PID_ROT_X].D = PID[PID_ROT_Y].D = XY_D_GAIN;
 
-    PID[PID_ROT_Z].P = Z_P_GAIN;
-    PID[PID_ROT_Z].I = Z_I_GAIN;
-    PID[PID_ROT_Z].D = Z_D_GAIN;
+    //PID[PID_ROT_Z].P = Z_P_GAIN;
+    //PID[PID_ROT_Z].I = Z_I_GAIN;
+    //PID[PID_ROT_Z].D = Z_D_GAIN;
 
     numGoodComm = 0;   // Number of good communication packets.
     numBadComm = 0;   // Number of bad communication packets.
