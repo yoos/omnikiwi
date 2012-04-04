@@ -24,11 +24,11 @@ import kiwiconfig as cfg   # Import config.
 # =============================================================================
 
 # Initial sensor readings.
-ledRaw   = [0.0] * 6
-ledRawLast   = [0.0] * 6
-ledFiltered   = [0.0] * 6
-ledFilteredLast   = [0.0] * 6
-ledVar        = [100.0] * 6
+ledRaw   = [0.0] * 4
+ledRawLast   = [0.0] * 4
+ledFiltered   = [0.0] * 4
+ledFilteredLast   = [0.0] * 4
+ledVar        = [100.0] * 4
 ledUpdateSig  = 150.
 ledPredictSig = 0.2
 
@@ -112,7 +112,7 @@ class telemetryThread(threading.Thread):
                     # =========================================================
                     if sensorDataIndex:
                         try:
-                            for i in range(6):
+                            for i in range(4):
                                 ledRaw[i] = float(int(fields[sensorDataIndex][i+1:i+2].encode('hex'), 16)*1024.0)/250.0
                                 #[ledFiltered[i], ledVar[i]] = update(ledFiltered[i], ledVar[i], ledRaw[i], ledUpdateSig)
                                 #[ledFiltered[i], ledVar[i]] = predict(ledFiltered[i], ledVar[i], 0.0, ledPredictSig)
@@ -171,14 +171,10 @@ class telemetryThread(threading.Thread):
                                           ledRaw[1],
                                           ledRaw[2],
                                           ledRaw[3],
-                                          ledRaw[4],
-                                          ledRaw[5],
                                           ledFiltered[0],
                                           ledFiltered[1],
                                           ledFiltered[2],
                                           ledFiltered[3],
-                                          ledFiltered[4],
-                                          ledFiltered[5],
                                           motorVal[0],
                                           motorVal[1],
                                           motorVal[2],

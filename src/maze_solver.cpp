@@ -136,7 +136,7 @@ void MazeSolver::wallFollower() {
 
 void MazeSolver::updateWalls() {
     currentWalls[0] = (ledFiltered[0] > MAZE_THRESHOLD_RIGHT) ? 1 : 0;
-    currentWalls[1] = (ledFiltered[2] > MAZE_THRESHOLD_FRONT) ? 1 : 0;
-    currentWalls[2] = (ledFiltered[3] > MAZE_THRESHOLD_LEFT)  ? 1 : 0;
-    currentWalls[3] = (ledFiltered[4] > MAZE_THRESHOLD_BACK)  ? 1 : 0;
+    currentWalls[1] = (ledFiltered[1] > MAZE_THRESHOLD_FRONT) ? 1 : 0;
+    currentWalls[2] = (ledFiltered[2] > MAZE_THRESHOLD_LEFT)  ? 1 : 0;
+    currentWalls[3] = (ledFiltered[3] > MAZE_THRESHOLD_BACK)  ? 1 : 0;
 }
