@@ -9,8 +9,12 @@
 #include "globals.h"
 #include "motors.h"
 #include "movements.cpp"
+#include "lsm303.cpp"
 
 class MazeSolver {
+    // Sensors
+    LSM303 mag;
+
     // Controllers
     void mazeSolver();
     void lightFollower();
