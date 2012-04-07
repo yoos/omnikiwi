@@ -28,12 +28,6 @@ void MazeSolver::run() {
     //mazeSolver();
     //lightFollower();
     wallFollower();
-
-    mag.poll();
-    heading = mag.getHeading();   // Not tilt-compensated, but the robot will have no use for the magnetometer if it is not flat, anyway.
-
-    sp("H: ");
-    spln(heading);
 }
 
 void MazeSolver::mazeSolver() {
