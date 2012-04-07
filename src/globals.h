@@ -229,6 +229,14 @@ uint16_t ledZero[] = {0, 0, 0, 0};
 static int anodePins[]   = {8, 9, 12, 13};
 static int cathodePins[] = {14, 15, 16, 17};
 
+// Calibration values for magnetometer.
+#define MAG_X_MIN -314
+#define MAG_X_MAX 320
+#define MAG_Y_MIN -316
+#define MAG_Y_MAX 317
+#define MAG_Z_MIN -427
+#define MAG_Z_MAX 165
+
 
 // ============================================================================
 // Constants
