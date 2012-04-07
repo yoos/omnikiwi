@@ -18,6 +18,8 @@ float bodyDCM[3][3];   // Current body orientation calculated by IMU.
 float targetRot[3], currentRot[3], pidRot[3];
 float rotSpeed, transDir, transSpeed;
 
+float heading;
+
 uint16_t moveCounter;
 
 // LED distance sensor readings.
