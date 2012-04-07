@@ -55,3 +55,7 @@ float LSM303::get(int axis) {
     return mVec[axis];
 }
 
+float LSM303::getHeading() {
+    return atan2(mVec[1], mVec[0]);
+}
+
