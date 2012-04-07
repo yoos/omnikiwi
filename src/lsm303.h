@@ -9,7 +9,6 @@
 #define LSM303_H
 
 #include "i2c.h"
-#include "triMath.h"
 #include "globals.h"
 
 #define MAG_ADDRESS 0x1e
