@@ -10,6 +10,7 @@ IMU::IMU() {
 
 void IMU::init() {
     spln("IMU here!");
+    update();
 }
 
 void IMU::update() {
@@ -22,7 +23,13 @@ void IMU::update() {
     // ========================================================================
     mag.poll();
     heading = mag.getHeading();
-    sp("H: ");
-    spln(heading);
+    //sp("M(");
+    //for (int i=0; i<3; i++) {
+    //    sp(mag.get(i));
+    //    sp(" ");
+    //}
+    //sp(")  ");
+    //sp("H: ");
+    //spln(heading);
 }
 
