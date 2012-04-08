@@ -34,6 +34,9 @@ Pilot::Pilot() {
 
     numGoodComm = 0;   // Number of good communication packets.
     numBadComm = 0;   // Number of bad communication packets.
+
+    // Set targetHeading to current heading. Initialize IMU first!
+    targetHeading = heading;
 }
 
 void Pilot::listen() {
@@ -73,19 +76,47 @@ void Pilot::fly() {
     //sp(") ");
 
     if (okayToFly) {
+        // Process inputs.
         update_joystick_input();
-
         process_joystick_buttons();
 
+        // Calculate target values.
+        targetHeading += joy.axes[ST]/125 * 1.5 / (MASTER_DT * CONTROL_LOOP_INTERVAL);   // Change target heading by a maximum of 1.5 rad/s.
+
+        // Keep targetHeading within [-PI, PI].
+        if (targetHeading > PI) {
+            targetHeading -= 2*PI;
+        }
+        else if (targetHeading < -PI) {
+            targetHeading += 2*PI;
+        }
+
+
+        targetRot = targetHeading - heading;
+
+        // Keep targetRot within [-PI, PI].
+        if (targetRot > PI) {
+            targetRot -= 2*PI;
+        }
+        else if (targetRot < -PI) {
+            targetRot += 2*PI;
+        }
+
+        // Calculate target speeds.
         if (joy.axes[SZ] > 0) {
-            rotSpeed = 20 * joy.axes[ST] / 125. * joy.axes[SZ] / 250.;
+            rotSpeed = targetRot * MAX_ROT_SPEED / PI;
             transDir = atan2(joy.axes[SY], joy.axes[SX]);
+
+            if (isCartesian) { transDir += heading; }
+
             transSpeed = 2.5 * sqrt(pow(joy.axes[SX]/125, 2) + pow(joy.axes[SY]/125, 2)) * joy.axes[SZ] / 250.;
         }
 
-        rotSpeed *= (float) joy.axes[SZ]/250;
-        transSpeed *= (float) joy.axes[SZ]/250;
+        // Scale speeds by throttle value.
+        rotSpeed   *= joy.axes[SZ]/250.;
+        transSpeed *= joy.axes[SZ]/250.;
 
+        // Calculate PWM duty cycles for the three wheels.
         calculate_pwm_outputs(rotSpeed, transDir, transSpeed);
 
         okayToFly = false;
@@ -124,5 +155,18 @@ void Pilot::update_joystick_input(void) {
 }
 
 void Pilot::process_joystick_buttons(void) {
+    // Toggle pilot mode.
+    if (joy.buttons[BUTTON_PILOT_MODE_TOGGLE]) {
+        isCartesian = true;
+    }
+    else {
+        isCartesian = false;
+    }
+
+    // Reset targetHeading to heading if thumb button is pressed.
+    if (joy.buttons[BUTTON_RESET_YAW]) {
+        targetHeading = heading;
+        targetHeading += joy.axes[ST]/125. * 1.5;
+    }
 }
 

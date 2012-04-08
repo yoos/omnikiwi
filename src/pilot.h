@@ -22,6 +22,8 @@ class Pilot {
     long numGoodComm;
     long numBadComm;
 
+    bool isCartesian;
+
     struct joyInput {
         float axes[6];
         bool buttons[14];
