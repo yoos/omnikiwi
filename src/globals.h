@@ -15,8 +15,8 @@ int loopCount;   // Count system loops.
 uint8_t digOut[3];    // Motor digital outputs.
 float analogOut[3];   // Motor PWM outputs.
 float bodyDCM[3][3];   // Current body orientation calculated by IMU.
-float targetRot[3], currentRot[3], pidRot[3];
-float rotSpeed, transDir, transSpeed;
+float targetHeading, targetRot;   // Target heading and rotation.
+float rotSpeed, transDir, transSpeed;   // Target speeds.
 
 float heading;
 
@@ -197,7 +197,7 @@ uint16_t ledZero[] = {0, 0, 0, 0};
 // ============================================================================
 // Buttons
 // ============================================================================
-#define BUTTON_UNDEFINED            0
+#define BUTTON_PILOT_MODE_TOGGLE    0
 #define BUTTON_RESET_YAW            1
 #define BUTTON_ZERO_INTEGRAL        2
 #define BUTTON_DECREASE_TRIM        3
@@ -216,7 +216,10 @@ uint16_t ledZero[] = {0, 0, 0, 0};
 // ============================================================================
 #define ROBOT_RADIUS 0.071   // Robot wheelbase radius in meters.
 #define WHEEL_RADIUS 0.0254   // Effective wheel radius in meters.
-#define MAX_MOTOR_SPEED 73.304   // Maximum motor speed in rad/s (350 RPM at 6V == 700 RPM at 12 V). TODO: This varies based on battery voltage. Either make this dynamic or implement rotation sensing using a gyro or encoders.
+#define MAX_MOTOR_SPEED 70.0   // Maximum motor speed in rad/s (350 RPM at 6V == 700 RPM at 12 V). TODO: This varies based on battery voltage. Either make this dynamic or implement rotation sensing using a gyro or encoders.
+
+#define MAX_ROT_SPEED (MAX_MOTOR_SPEED * WHEEL_RADIUS / ROBOT_RADIUS)
+
 #define NUM_OF_LEDS 4   // Number of LED sensors.
 
 // Digital pin assignments
