@@ -8,6 +8,7 @@
 #include <Wire.h>
 #include "maze_solver.cpp"
 #include "pilot.cpp"
+#include "imu.cpp"
 #include "sensors.cpp"
 #include "globals.h"
 #include "telemetry.h"
@@ -16,7 +17,7 @@ int main(void) {
     init();   // For Arduino.
 
     // Begin Arduino services.
-    //Wire.begin();
+    Wire.begin();
 
     Serial.begin(BAUDRATE);
 
@@ -25,9 +26,12 @@ int main(void) {
     pinMode(ML_DIG, OUTPUT);
 
     // Initialize bot.
-    MazeSolver mazer;
+    IMU imu;
+    imu.init();
+
     Sensors sensors;
     Pilot pilot;
+    MazeSolver mazer;
 
     // Variables
 
@@ -47,6 +51,8 @@ int main(void) {
             // WARNING: This loop is extremely time-sensitive! Make sure the
             // looptime never exceeds MASTER_DT!
             // ================================================================
+            imu.update();
+
             for (int i=0; i<NUM_OF_LEDS; i++) {
                 if (loopCount % SENSOR_LOOP_INTERVAL == i) {
                     // Charge up the LED two pins down the list since a delay
@@ -65,8 +71,8 @@ int main(void) {
             // Control loop
             // ================================================================
             if (loopCount % CONTROL_LOOP_INTERVAL == 0) {
-                mazer.run();
-                //pilot.fly();
+                //mazer.run();
+                pilot.fly();
 
                 analogWrite(MT_PWM, analogOut[MOTOR_T]);
                 analogWrite(MR_PWM, analogOut[MOTOR_R]);
