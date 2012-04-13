@@ -105,7 +105,7 @@ void Pilot::fly() {
         // Calculate target speeds.
         if (joy.axes[SZ] > 0) {
             rotSpeed = targetRot * MAX_ROT_SPEED / PI;
-            transDir = atan2(joy.axes[SY], joy.axes[SX]) + targetRot;
+            transDir = atan2(joy.axes[SY], joy.axes[SX]) + targetRot + STRAFE_CORRECTION_GAIN*targetRot;
 
             if (isCartesian) { transDir += heading; }
 

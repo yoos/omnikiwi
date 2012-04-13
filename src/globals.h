@@ -110,6 +110,12 @@ uint16_t ledFiltered[4];
 #define UNIT_DISTANCE 0.35   // "Unit" distance for maze solver.
 #define UNIT_ROT (PI/2) * 1.0     // "Unit" rotation for maze solver.
 
+// When an obstacle knocks the robot off the desired heading, this gain helps
+// the robot steer clear of the obstacle. If the heading error and this gain
+// have opposite signs, the robot will strafe to the right. If the error and
+// gain have the same signs, the robot will strafe to the left.
+#define STRAFE_CORRECTION_GAIN 1.5
+
 #define MAZE_TRANS_SPEED       0.6
 #define MAZE_ROT_SPEED         4.0
 #define MAZE_VEER_TRANS_SPEED  0.6
