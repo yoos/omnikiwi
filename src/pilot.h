@@ -36,6 +36,7 @@ public:
     Pilot();
     void listen();
     void fly();
+    void navigate();
     void die();
 
     bool hasFood;

@@ -126,6 +126,34 @@ void Pilot::fly() {
     }
 }
 
+// Just update orientation and such and keep hands off controls.
+void Pilot::navigate() {
+    // Keep targetHeading within [-PI, PI].
+    if (targetHeading > PI) {
+        targetHeading -= 2*PI;
+    }
+    else if (targetHeading < -PI) {
+        targetHeading += 2*PI;
+    }
+
+    targetRot = targetHeading - heading;
+
+    // Keep targetRot within [-PI, PI].
+    if (targetRot > PI) {
+        targetRot -= 2*PI;
+    }
+    else if (targetRot < -PI) {
+        targetRot += 2*PI;
+    }
+
+    // Override some speeds.
+    rotSpeed = targetRot * MAZE_ROT_SPEED / PI;
+    transDir = PI/2 + targetRot + STRAFE_CORRECTION_GAIN*targetRot;
+
+    // Calculate PWM duty cycles for the three wheels.
+    calculate_pwm_outputs(rotSpeed, transDir, transSpeed);
+}
+
 void Pilot::die() {
     // ========================================================================
     // When communication is lost, pilot should set a bunch of stuff to safe
