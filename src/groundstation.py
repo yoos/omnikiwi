@@ -53,7 +53,7 @@ def joyCallback (myJoy):
         #axisValues[cfg.axisT] = joy2byte(myJoy.axes[3], cfg.axisT)   # T
         #axisValues[cfg.axisZ] = joy2byte(myJoy.axes[2], cfg.axisZ)   # Z
     elif len(myJoy.axes) == 7:   # Saitek Cyborg X joystick
-        axisValues[cfg.axisZ] = joy2byte(myJoy.axes[2], cfg.axisT)   # Z
+        axisValues[cfg.axisZ] = joy2byte(myJoy.axes[2], cfg.axisZ)   # Z
         axisValues[cfg.axisT] = joy2byte(myJoy.axes[3], cfg.axisT)   # T
 
     buttonValues = 0
