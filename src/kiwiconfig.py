@@ -25,11 +25,11 @@ pidSerTag      = '\xfe'
 
 
 # Joystick axis sign flips.
-axisSigns = [-1, 1, 1, 1, -1, 1]
+axisSigns = [1, -1, 1, -1, -1, 1]
 
 # Joystick axis indices.
 axisX = 0
 axisY = 1
-axisT = 2
-axisZ = 3
+axisT = 3
+axisZ = 2
 
