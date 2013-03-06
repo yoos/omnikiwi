@@ -114,7 +114,7 @@ uint16_t ledFiltered[4];
 // the robot steer clear of the obstacle. If the heading error and this gain
 // have opposite signs, the robot will strafe to the right. If the error and
 // gain have the same signs, the robot will strafe to the left.
-#define STRAFE_CORRECTION_GAIN 1.5
+#define STRAFE_CORRECTION_GAIN 0 // 1.5
 
 #define MAZE_TRANS_SPEED       0.6
 #define MAZE_ROT_SPEED         4.0
